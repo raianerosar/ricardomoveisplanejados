@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "bash",
+      "args": [
+        "-c",
+        "cd /home/habil && npx shadcn@latest mcp"
+      ],
+      "cwd": "/mnt/c/projeto-ricardo-moveis",
+      "env": {
+        "MCP_TIMEOUT": "60000"
+      }
+    }
+  }
+}
