@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Check } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { getProjectsByCategory } from "@/data/projects";
+import { FadeIn } from "@/components/ui/FadeIn";
 
 export function Gallery() {
   const projectsByCategory = getProjectsByCategory();
@@ -17,10 +18,14 @@ export function Gallery() {
     <section id="projetos" className="py-20 bg-muted/50">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">Nossos Projetos</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Conheça alguns dos projetos que realizamos com excelência e dedicação em São José, SC
-          </p>
+          <FadeIn>
+            <h2 className="text-3xl md:text-4xl font-bold">Nossos Projetos</h2>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Conheça alguns dos projetos que realizamos com excelência e dedicação em São José, SC
+            </p>
+          </FadeIn>
         </div>
 
         <Tabs defaultValue={getCategoryId(projectsByCategory[0]?.category || '')} className="w-full">
@@ -45,10 +50,11 @@ export function Gallery() {
             <TabsContent
               key={category}
               value={getCategoryId(category)}
-              className="mt-0 animate-in fade-in-50 slide-in-from-bottom-3 duration-300"
+              className="mt-0"
             >
               {projects.map((project) => (
-                <div key={project.slug} className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
+                <FadeIn key={project.slug}>
+                  <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
                   {/* Imagem do Projeto */}
                   <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
                     <Image
@@ -112,6 +118,7 @@ export function Gallery() {
                     </a>
                   </div>
                 </div>
+              </FadeIn>
               ))}
             </TabsContent>
           ))}

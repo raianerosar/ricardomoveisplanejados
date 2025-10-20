@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { trackFormSubmission } from '@/lib/analytics';
+import { FadeIn } from '@/components/ui/FadeIn';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -92,17 +93,22 @@ export function Contact() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
-              Solicite seu Orçamento
-            </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Entre em contato conosco e transforme seus ambientes com móveis planejados de qualidade.
-            </p>
+            <FadeIn>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+                Solicite seu Orçamento
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                Entre em contato conosco e transforme seus ambientes com móveis planejados de qualidade.
+              </p>
+            </FadeIn>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Formulário */}
-            <div>
+            <FadeIn delay={0.2}>
+              <div>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
@@ -197,10 +203,12 @@ export function Contact() {
                   {isSubmitting ? 'Enviando...' : 'Solicitar Orçamento'}
                 </Button>
               </form>
-            </div>
+              </div>
+            </FadeIn>
 
             {/* Informações de Contato */}
-            <div className="lg:pl-8">
+            <FadeIn delay={0.3}>
+              <div className="lg:pl-8">
               <h3 className="text-2xl font-bold text-slate-800 mb-6">
                 Entre em Contato
               </h3>
@@ -252,7 +260,8 @@ export function Contact() {
                   <p>Domingo: Fechado</p>
                 </div>
               </div>
-            </div>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </div>
