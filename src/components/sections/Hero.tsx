@@ -6,8 +6,32 @@ import { Polaroid } from "@/components/ui/Polaroid";
 
 export function Hero() {
   return (
-    <section className="bg-gradient-to-br from-slate-600 to-slate-800 text-white min-h-screen flex items-center">
-      <div className="container mx-auto px-4 py-16">
+    <section className="relative bg-gradient-to-br from-slate-600 to-slate-800 text-white min-h-screen flex items-center overflow-hidden">
+      {/* Background Image - Desktop */}
+      <div className="absolute inset-0 hidden md:block">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: "url('/imagens/hero.png')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+      </div>
+
+      {/* Background Image - Mobile */}
+      <div className="absolute inset-0 md:hidden">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: "url('/imagens/hero2.png')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Coluna Esquerda - Informações */}
           <div className="text-center lg:text-left">
@@ -53,29 +77,32 @@ export function Hero() {
             <FadeIn delay={0.5}>
               <div className="relative w-full max-w-md mx-auto">
                 {/* Polaroid 1 - Rotação leve à esquerda */}
-                <div className="absolute top-0 left-0 w-48 md:w-56 z-10">
+                <div className="absolute top-0 left-0 w-48 md:w-80 z-10">
                   <Polaroid
-                    src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=400&h=400&fit=crop"
+                    src="/imagens/p1.png"
                     alt="Cozinha planejada"
                     rotation={-6}
+                    animationDelay={0}
                   />
                 </div>
 
                 {/* Polaroid 2 - Centro, rotação leve à direita */}
-                <div className="absolute top-12 right-0 w-48 md:w-56 z-20">
+                <div className="absolute top-12 right-0 w-48 md:w-80 z-20">
                   <Polaroid
-                    src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&h=400&fit=crop"
+                    src="/imagens/p2.png"
                     alt="Quarto planejado"
                     rotation={4}
+                    animationDelay={0.7}
                   />
                 </div>
 
                 {/* Polaroid 3 - Inferior, leve rotação */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 md:w-56 z-30">
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 md:w-80 z-30">
                   <Polaroid
-                    src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&h=400&fit=crop"
+                    src="/imagens/p3.png"
                     alt="Móveis sob medida"
                     rotation={-3}
+                    animationDelay={1.4}
                   />
                 </div>
               </div>

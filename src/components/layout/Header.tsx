@@ -57,13 +57,25 @@ export function Header() {
             >
               Projetos
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('depoimentos')}
               className="text-slate-600 hover:text-slate-900 font-medium"
             >
               Depoimentos
             </button>
-            <Button 
+            <button
+              onClick={() => scrollToSection('onde-trabalhamos')}
+              className="text-slate-600 hover:text-slate-900 font-medium"
+            >
+              Onde Trabalhamos
+            </button>
+            <button
+              onClick={() => scrollToSection('faq')}
+              className="text-slate-600 hover:text-slate-900 font-medium"
+            >
+              FAQ
+            </button>
+            <Button
               onClick={() => scrollToSection('contato')}
               className="bg-yellow-500 hover:bg-yellow-600 text-black"
             >
@@ -112,13 +124,25 @@ export function Header() {
               >
                 Projetos
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('depoimentos')}
                 className="text-slate-600 hover:text-slate-900 font-medium text-left"
               >
                 Depoimentos
               </button>
-              <Button 
+              <button
+                onClick={() => scrollToSection('onde-trabalhamos')}
+                className="text-slate-600 hover:text-slate-900 font-medium text-left"
+              >
+                Onde Trabalhamos
+              </button>
+              <button
+                onClick={() => scrollToSection('faq')}
+                className="text-slate-600 hover:text-slate-900 font-medium text-left"
+              >
+                FAQ
+              </button>
+              <Button
                 onClick={() => scrollToSection('contato')}
                 className="bg-yellow-500 hover:bg-yellow-600 text-black w-full"
               >
