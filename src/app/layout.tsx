@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { FacebookPixel } from "@/components/analytics/FacebookPixel";
+import { GoogleTagManager } from "@/components/analytics/GoogleTagManager";
 import { ANALYTICS_CONFIG } from "@/lib/analytics";
 
 const geistSans = Geist({
@@ -43,6 +44,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Google Tag Manager - deve ser o primeiro elemento no body */}
+        {ANALYTICS_CONFIG.googleTagManagerId && (
+          <GoogleTagManager gtmId={ANALYTICS_CONFIG.googleTagManagerId} />
+        )}
         {children}
         {ANALYTICS_CONFIG.googleAnalyticsId && (
           <GoogleAnalytics gaId={ANALYTICS_CONFIG.googleAnalyticsId} />

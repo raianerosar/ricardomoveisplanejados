@@ -1,4 +1,4 @@
-// Extensão do tipo Window para incluir gtag e fbq
+// Extensão do tipo Window para incluir gtag, fbq e dataLayer
 declare global {
   interface Window {
     gtag?: (
@@ -11,6 +11,7 @@ declare global {
       event: string,
       parameters?: Record<string, unknown>
     ) => void;
+    dataLayer?: Record<string, unknown>[];
   }
 }
 
@@ -18,9 +19,12 @@ declare global {
 export const ANALYTICS_CONFIG = {
   // Google Analytics ID - substitua por seu GA4 ID real (ex: G-XXXXXXXXXX)
   googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID || '',
-  
+
   // Facebook Pixel ID - substitua por seu Pixel ID real
   facebookPixelId: process.env.NEXT_PUBLIC_FB_PIXEL_ID || '',
+
+  // Google Tag Manager ID
+  googleTagManagerId: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-MW46V79K',
 };
 
 // Funções utilitárias para tracking de eventos
