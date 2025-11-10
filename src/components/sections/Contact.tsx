@@ -8,7 +8,6 @@ import { FadeIn } from '@/components/ui/FadeIn';
 export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     phone: '',
     service: '',
     message: ''
@@ -49,7 +48,6 @@ export function Contact() {
         trackFormSubmission('contact_form');
         setFormData({
           name: '',
-          email: '',
           phone: '',
           service: '',
           message: ''
@@ -123,22 +121,6 @@ export function Contact() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                     placeholder="Seu nome completo"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                    E-mail *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    placeholder="seu@email.com"
                   />
                 </div>
 
