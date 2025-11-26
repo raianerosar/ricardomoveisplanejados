@@ -1,7 +1,12 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/FadeIn";
-import { Accordion } from "@/components/ui/Accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useEffect } from "react";
 
 const faqItems = [
@@ -124,7 +129,22 @@ export function FAQ() {
         {/* Accordion com perguntas */}
         <FadeIn delay={0.2}>
           <div className="max-w-4xl mx-auto">
-            <Accordion items={faqItems} allowMultiple={false} />
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqItems.map((item, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="bg-white rounded-lg px-6 border shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:no-underline py-6">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </FadeIn>
 

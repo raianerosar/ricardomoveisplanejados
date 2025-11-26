@@ -6,6 +6,10 @@ export const projects: Project[] = [
     title: "Cozinha Moderna",
     category: "Cozinha",
     image: "/imagens/cozainha-r.png",
+    gallery: [
+      "/imagens/cozainha-r.png",
+      // Adicione mais imagens aqui quando tiver
+    ],
     description: "Projeto de cozinha planejada com design moderno e funcional. Desenvolvida com materiais de alta qualidade, esta cozinha combina estética contemporânea com praticidade no dia a dia. Cada detalhe foi pensado para otimizar o espaço e proporcionar conforto aos usuários.",
     features: [
       "Armários planejados em MDF com acabamento em laca branca",
@@ -31,6 +35,10 @@ export const projects: Project[] = [
     title: "Quarto Planejado",
     category: "Quarto",
     image: "/imagens/quarto-r.png",
+    gallery: [
+      "/imagens/quarto-r.png",
+      // Adicione mais imagens aqui quando tiver
+    ],
     description: "Ambiente acolhedor e funcional com guarda-roupa planejado que aproveita cada centímetro do espaço disponível. O projeto inclui soluções inteligentes de armazenamento e um design que combina elegância e praticidade.",
     features: [
       "Guarda-roupa de canto otimizando o espaço",
@@ -56,6 +64,10 @@ export const projects: Project[] = [
     title: "Banheiro Elegante",
     category: "Banheiro",
     image: "/imagens/banheiro-r1.png",
+    gallery: [
+      "/imagens/banheiro-r1.png",
+      // Adicione mais imagens aqui quando tiver
+    ],
     description: "Projeto sofisticado de banheiro planejado com móveis sob medida que maximizam o aproveitamento do espaço. Design clean com materiais resistentes à umidade e acabamentos de alto padrão.",
     features: [
       "Gabinete suspenso em MDF naval",
@@ -81,6 +93,10 @@ export const projects: Project[] = [
     title: "Saguão Personalizado",
     category: "Sala",
     image: "/imagens/saguao.png",
+    gallery: [
+      "/imagens/saguao.png",
+      // Adicione mais imagens aqui quando tiver
+    ],
     description: "Projeto exclusivo de móveis planejados para sala de estar, criando um ambiente sofisticado e aconchegante. O design integrado valoriza o espaço e proporciona funcionalidade sem comprometer a estética.",
     features: [
       "Painel para TV com nichos decorativos",

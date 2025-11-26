@@ -1,84 +1,66 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import * as React from "react"
+import * as AccordionPrimitive from "@radix-ui/react-accordion"
+import { ChevronDownIcon } from "lucide-react"
 
-interface AccordionItemProps {
-  question: string;
-  answer: string;
-  isOpen: boolean;
-  onToggle: () => void;
+import { cn } from "@/lib/utils"
+
+function Accordion({
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Root>) {
+  return <AccordionPrimitive.Root data-slot="accordion" {...props} />
 }
 
-function AccordionItem({ question, answer, isOpen, onToggle }: AccordionItemProps) {
+function AccordionItem({
+  className,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Item>) {
   return (
-    <div className="border-b border-slate-200 last:border-0">
-      <button
-        onClick={onToggle}
-        className="w-full text-left py-5 px-6 flex justify-between items-center hover:bg-slate-50 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-inset"
-        aria-expanded={isOpen}
-      >
-        <h3 className="text-lg font-semibold text-slate-800 pr-4">
-          {question}
-        </h3>
-        <ChevronDown
-          className={`w-5 h-5 text-yellow-500 flex-shrink-0 transition-transform duration-300 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-      <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="px-6 pb-5 text-slate-600 leading-relaxed">
-          {answer}
-        </div>
-      </div>
-    </div>
-  );
+    <AccordionPrimitive.Item
+      data-slot="accordion-item"
+      className={cn("border-b last:border-b-0", className)}
+      {...props}
+    />
+  )
 }
 
-interface AccordionProps {
-  items: Array<{
-    question: string;
-    answer: string;
-  }>;
-  allowMultiple?: boolean;
-  defaultOpenIndex?: number;
-}
-
-export function Accordion({ items, allowMultiple = false, defaultOpenIndex }: AccordionProps) {
-  const [openIndexes, setOpenIndexes] = useState<number[]>(
-    defaultOpenIndex !== undefined ? [defaultOpenIndex] : []
-  );
-
-  const toggleItem = (index: number) => {
-    if (allowMultiple) {
-      setOpenIndexes((prev) =>
-        prev.includes(index)
-          ? prev.filter((i) => i !== index)
-          : [...prev, index]
-      );
-    } else {
-      setOpenIndexes((prev) =>
-        prev.includes(index) ? [] : [index]
-      );
-    }
-  };
-
+function AccordionTrigger({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      {items.map((item, index) => (
-        <AccordionItem
-          key={index}
-          question={item.question}
-          answer={item.answer}
-          isOpen={openIndexes.includes(index)}
-          onToggle={() => toggleItem(index)}
-        />
-      ))}
-    </div>
-  );
+    <AccordionPrimitive.Header className="flex">
+      <AccordionPrimitive.Trigger
+        data-slot="accordion-trigger"
+        className={cn(
+          "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
+          className
+        )}
+        {...props}
+      >
+        {children}
+        <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" />
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  )
 }
+
+function AccordionContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Content>) {
+  return (
+    <AccordionPrimitive.Content
+      data-slot="accordion-content"
+      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
+      {...props}
+    >
+      <div className={cn("pt-0 pb-4", className)}>{children}</div>
+    </AccordionPrimitive.Content>
+  )
+}
+
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }

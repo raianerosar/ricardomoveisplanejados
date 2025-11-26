@@ -39,19 +39,13 @@ export function Header() {
             >
               Início
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('sobre')}
               className="text-slate-600 hover:text-slate-900 font-medium"
             >
               Sobre
             </button>
-            <button 
-              onClick={() => scrollToSection('servicos')}
-              className="text-slate-600 hover:text-slate-900 font-medium"
-            >
-              Serviços
-            </button>
-            <button 
+            <button
               onClick={() => scrollToSection('projetos')}
               className="text-slate-600 hover:text-slate-900 font-medium"
             >
@@ -106,19 +100,13 @@ export function Header() {
               >
                 Início
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('sobre')}
                 className="text-slate-600 hover:text-slate-900 font-medium text-left"
               >
                 Sobre
               </button>
-              <button 
-                onClick={() => scrollToSection('servicos')}
-                className="text-slate-600 hover:text-slate-900 font-medium text-left"
-              >
-                Serviços
-              </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('projetos')}
                 className="text-slate-600 hover:text-slate-900 font-medium text-left"
               >

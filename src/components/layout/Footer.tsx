@@ -48,11 +48,6 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#servicos" className="text-slate-300 hover:text-white transition-colors">
-                  Nossos Serviços
-                </a>
-              </li>
-              <li>
                 <a href="#projetos" className="text-slate-300 hover:text-white transition-colors">
                   Projetos
                 </a>
@@ -70,16 +65,14 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Serviços */}
+          {/* Contato */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Nossos Serviços</h3>
+            <h3 className="text-lg font-semibold mb-4">Contato</h3>
             <ul className="space-y-2 text-slate-300">
-              <li>Cozinhas Planejadas</li>
-              <li>Quartos Planejados</li>
-              <li>Banheiros Planejados</li>
-              <li>Closets</li>
-              <li>Móveis Corporativos</li>
-              <li>Estantes e Painéis</li>
+              <li>📧 ricardorosarmoveisplanejados@gmail.com</li>
+              <li>📍 Atendemos toda a região</li>
+              <li>🕒 Seg - Sex: 8h às 18h</li>
+              <li>🕒 Sábado: 8h às 12h</li>
             </ul>
           </div>
         </div>

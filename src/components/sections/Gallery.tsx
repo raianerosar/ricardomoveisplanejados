@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Check } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { getProjectsByCategory } from "@/data/projects";
@@ -12,6 +13,17 @@ export function Gallery() {
   // Normalizar IDs para as tabs (remover espaços e caracteres especiais)
   const getCategoryId = (category: string) => {
     return category.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-');
+  };
+
+  // Mapear categoria para slug do ambiente
+  const getAmbienteSlug = (category: string) => {
+    const slugMap: Record<string, string> = {
+      'Cozinha': 'cozinha-planejada',
+      'Quarto': 'quarto-planejado',
+      'Banheiro': 'banheiro-planejado',
+      'Sala': 'sala-planejada'
+    };
+    return slugMap[category] || category.toLowerCase() + '-planejada';
   };
 
   return (
@@ -109,13 +121,21 @@ export function Gallery() {
                       </ul>
                     </div>
 
-                    {/* CTA Button */}
-                    <a
-                      href="#contato"
-                      className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground hover:bg-primary/90 h-10 rounded-md px-6 has-[>svg]:px-4 w-full md:w-auto"
-                    >
-                      Solicitar Orçamento para {project.title}
-                    </a>
+                    {/* CTA Buttons */}
+                    <div className="flex flex-col md:flex-row gap-3">
+                      <Link
+                        href={`/projetos/${project.slug}`}
+                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground hover:bg-primary/90 h-10 rounded-md px-6 has-[>svg]:px-4 w-full md:w-auto"
+                      >
+                        Explorar Projeto
+                      </Link>
+                      <Link
+                        href={`/ambientes/${getAmbienteSlug(project.category)}`}
+                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 rounded-md px-6 has-[>svg]:px-4 w-full md:w-auto"
+                      >
+                        Ver Mais Sobre {project.category}s
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </FadeIn>

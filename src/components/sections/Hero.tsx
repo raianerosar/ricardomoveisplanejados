@@ -63,7 +63,7 @@ export function Hero() {
                 </a>
                 <Button
                   variant="outline"
-                  size="default"
+                  size="md"
                   className="border-white text-white hover:bg-white hover:text-slate-800 w-full sm:w-auto"
                 >
                   Ver Nossos Projetos
