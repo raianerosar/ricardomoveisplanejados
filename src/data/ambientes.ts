@@ -25,22 +25,22 @@ export const ambientes: Ambiente[] = [
       title: 'Por que nos escolher',
       items: [
         {
-          icon: '📐',
+          icon: 'Ruler',
           title: 'Projetos 100% personalizados',
           description: 'Cada cozinha é única e projetada especialmente para atender suas necessidades e estilo de vida.'
         },
         {
-          icon: '⭐',
+          icon: 'Star',
           title: 'Materiais premium',
           description: 'Trabalhamos apenas com fornecedores certificados e materiais de primeira linha, garantindo durabilidade.'
         },
         {
-          icon: '⚡',
+          icon: 'Zap',
           title: 'Entrega no prazo',
           description: 'Comprometimento com cronograma estabelecido, desde o projeto até a instalação final.'
         },
         {
-          icon: '🛠️',
+          icon: 'Wrench',
           title: 'Garantia estendida',
           description: 'Oferecemos garantia de 5 anos para todos os móveis e 1 ano para instalações e acabamentos.'
         }
@@ -128,22 +128,22 @@ export const ambientes: Ambiente[] = [
       title: 'Por que nos escolher',
       items: [
         {
-          icon: '🎨',
+          icon: 'Palette',
           title: 'Design personalizado',
           description: 'Cada detalhe é pensado para refletir seu estilo pessoal e atender suas necessidades específicas.'
         },
         {
-          icon: '📦',
+          icon: 'Package',
           title: 'Organização otimizada',
           description: 'Sistemas inteligentes de gavetas, nichos e prateleiras para manter tudo sempre organizado.'
         },
         {
-          icon: '💎',
+          icon: 'Gem',
           title: 'Acabamento impecável',
           description: 'Qualidade superior em cada detalhe, desde dobradiças até os puxadores e revestimentos.'
         },
         {
-          icon: '🔧',
+          icon: 'Wrench',
           title: 'Instalação profissional',
           description: 'Equipe especializada e treinada, garantindo perfeição na montagem e acabamento.'
         }
@@ -358,22 +358,22 @@ export const ambientes: Ambiente[] = [
       title: 'Por que nos escolher',
       items: [
         {
-          icon: '🏠',
+          icon: 'Home',
           title: 'Ambientes integrados',
           description: 'Criamos projetos que integram sala de estar, jantar e outros espaços com harmonia e funcionalidade.'
         },
         {
-          icon: '📺',
+          icon: 'Tv',
           title: 'Painéis modernos',
           description: 'Painéis de TV com design exclusivo, sistema de organização de cabos e iluminação decorativa.'
         },
         {
-          icon: '📚',
+          icon: 'BookOpen',
           title: 'Soluções versáteis',
           description: 'Estantes e nichos modulares que se adaptam às suas necessidades de armazenamento e decoração.'
         },
         {
-          icon: '🎭',
+          icon: 'Sparkles',
           title: 'Estilo único',
           description: 'Móveis que refletem sua personalidade e criam um ambiente acolhedor para receber família e amigos.'
         }

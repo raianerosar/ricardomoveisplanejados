@@ -121,17 +121,11 @@ export function Gallery() {
                       </ul>
                     </div>
 
-                    {/* CTA Buttons */}
-                    <div className="flex flex-col md:flex-row gap-3">
-                      <Link
-                        href={`/projetos/${project.slug}`}
-                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground hover:bg-primary/90 h-10 rounded-md px-6 has-[>svg]:px-4 w-full md:w-auto"
-                      >
-                        Explorar Projeto
-                      </Link>
+                    {/* CTA Button */}
+                    <div>
                       <Link
                         href={`/ambientes/${getAmbienteSlug(project.category)}`}
-                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 rounded-md px-6 has-[>svg]:px-4 w-full md:w-auto"
+                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-base font-semibold transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-4 focus-visible:ring-primary/30 bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:scale-105 active:scale-95 h-12 rounded-lg px-8 w-full md:w-auto shadow-md"
                       >
                         Ver Mais Sobre {project.category}s
                       </Link>
