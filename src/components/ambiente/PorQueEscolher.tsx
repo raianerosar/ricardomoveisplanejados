@@ -1,6 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import * as LucideIcons from 'lucide-react';
 
 interface WhyChooseItem {
   icon: string;
@@ -14,6 +15,11 @@ interface PorQueEscolherProps {
 }
 
 export default function PorQueEscolher({ title, items }: PorQueEscolherProps) {
+  const getIcon = (iconName: string) => {
+    const Icon = (LucideIcons as any)[iconName];
+    return Icon ? <Icon className="w-6 h-6" /> : null;
+  };
+
   return (
     <section className="py-20 bg-purple-50">
       <div className="container mx-auto px-4">
@@ -32,9 +38,13 @@ export default function PorQueEscolher({ title, items }: PorQueEscolherProps) {
               className="bg-white hover:shadow-xl transition-shadow duration-300 border-none"
             >
               <CardHeader className="text-center pb-4">
-                <div className="text-5xl mb-4">{item.icon}</div>
-                <CardTitle className="text-xl font-bold text-gray-900">
-                  {item.title}
+                <div className="flex justify-center mb-4">
+                  <div className="w-14 h-14 bg-yellow-500 rounded-full flex items-center justify-center text-slate-900">
+                    {getIcon(item.icon)}
+                  </div>
+                </div>
+                <CardTitle asChild className="text-xl font-bold text-gray-900">
+                  <h3>{item.title}</h3>
                 </CardTitle>
               </CardHeader>
               <CardContent>

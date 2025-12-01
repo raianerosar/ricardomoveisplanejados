@@ -212,79 +212,87 @@ export const ambientes: Ambiente[] = [
     title: 'Banheiro Planejado',
     category: 'Banheiro',
     hero: {
-      title: 'Banheiros Planejados Sofisticados',
-      subtitle: 'Ambientes elegantes e funcionais que transformam a rotina em experiência',
+      title: 'Banheiro Planejado em Florianópolis | Projetos Sob Medida',
+      subtitle: 'Do pequeno ao luxuoso: projetos inteligentes de banheiro planejado para apartamentos e casas em Florianópolis, Palhoça, São José e região. Gabinetes sob medida, nichos embutidos e espelheiras LED que transformam espaços pequenos em ambientes sofisticados.',
       backgroundImage: '/images/banheiro/banheiroooo.png'
     },
     about: {
-      title: 'Estúdio de design de interiores de luxo',
-      description: 'Nossos projetos de banheiros planejados unem sofisticação e praticidade. Desenvolvemos gabinetes, espelheiras e nichos sob medida, com materiais resistentes à umidade e acabamentos de alto padrão que garantem durabilidade e elegância por muitos anos.',
+      title: 'Banheiro Planejado Sob Medida: Funcionalidade e Sofisticação em Florianópolis',
+      description: 'Há mais de 10 anos, a Ricardo Móveis projeta banheiros planejados sob medida em Florianópolis, Palhoça, São José e toda Grande Florianópolis. Seja para otimizar um banheiro pequeno de apartamento ou criar um ambiente de luxo com closet integrado, desenvolvemos cada projeto com materiais premium resistentes à umidade e acabamentos que duram décadas.\n\nNossos gabinetes sob medida, nichos embutidos estratégicos e espelheiras com iluminação LED transformam até o menor banheiro em um espaço funcional, organizado e sofisticado. Do projeto 3D à instalação final, você acompanha cada detalhe da transformação do seu banheiro.',
       image: '/images/about/banheiro-about.jpg',
       highlights: [
-        'Materiais resistentes à umidade',
-        'Espelheiras com iluminação LED',
-        'Aproveitamento inteligente de nichos',
-        'Acabamentos sofisticados e duráveis'
+        'Otimização inteligente para banheiros pequenos',
+        'Materiais resistentes à umidade (MDF naval certificado)',
+        'Espelheiras planejadas com iluminação LED integrada',
+        'Acabamentos premium e duráveis (garantia estendida)'
       ]
     },
     whyChoose: {
-      title: 'Por que nos escolher',
+      title: 'Por Que Escolher a Ricardo Móveis para Seu Banheiro Planejado',
       items: [
         {
-          icon: '💧',
-          title: 'Materiais especiais',
-          description: 'Utilizamos materiais específicos para áreas molhadas, garantindo maior durabilidade e resistência.'
+          icon: 'Maximize2',
+          title: 'Especialistas em Banheiros Pequenos e Otimização de Espaço',
+          description: 'Transformamos banheiros compactos em ambientes funcionais e organizados. Com nichos embutidos estratégicos, gabinetes suspensos sob medida e espelheiras multifuncionais, aproveitamos cada centímetro do seu banheiro pequeno sem perder a sofisticação. Perfeito para apartamentos em Florianópolis e região.'
         },
         {
-          icon: '✨',
-          title: 'Design funcional',
-          description: 'Cada elemento é pensado para facilitar o dia a dia, com soluções inteligentes de armazenamento.'
+          icon: 'Droplet',
+          title: 'Materiais Especiais Resistentes à Umidade e Área Molhada',
+          description: 'Utilizamos exclusivamente MDF naval, revestimentos antimicrobianos e ferragens em aço inox – materiais certificados para áreas molhadas que garantem durabilidade superior. Seus móveis planejados resistem à umidade do banheiro por muitos anos, sem deformação ou manchas.'
         },
         {
-          icon: '🪞',
-          title: 'Iluminação integrada',
-          description: 'Espelheiras com LED embutido que valorizam o ambiente e facilitam o uso diário.'
+          icon: 'Lightbulb',
+          title: 'Espelheiras Planejadas com Iluminação LED Integrada',
+          description: 'Nossas espelheiras planejadas vêm com iluminação LED de alta qualidade já integrada, com diferentes temperaturas de cor para você escolher. Além de valorizar o ambiente, facilitam o uso diário e incluem opções com tomadas e USB embutidos, seguindo todas as normas de segurança elétrica.'
         },
         {
-          icon: '🎯',
-          title: 'Otimização de espaço',
-          description: 'Aproveitamos cada centímetro com nichos embutidos e gabinetes planejados sob medida.'
+          icon: 'Sparkles',
+          title: 'Projeto 3D Personalizado Antes da Execução',
+          description: 'Cada banheiro planejado é 100% personalizado para seu espaço e estilo de vida. Com nosso projeto 3D detalhado, você visualiza cada detalhe – gabinetes, nichos, espelheiras, acabamentos – antes mesmo de começarmos a produção. Aprovação garantida antes de qualquer investimento.'
         }
       ]
     },
     gallery: {
-      projectName: 'Projetos de Banheiros',
+      projectName: 'Projetos de Banheiros Planejados em Florianópolis',
       images: [
-        { src: '/images/gallery/banheiro-1.jpg', alt: 'Banheiro planejado 1' },
-        { src: '/images/gallery/banheiro-2.jpg', alt: 'Banheiro planejado 2' },
-        { src: '/images/gallery/banheiro-3.jpg', alt: 'Banheiro planejado 3' },
-        { src: '/images/gallery/banheiro-4.jpg', alt: 'Banheiro planejado 4' },
-        { src: '/images/gallery/banheiro-5.jpg', alt: 'Banheiro planejado 5' },
-        { src: '/images/gallery/banheiro-6.jpg', alt: 'Banheiro planejado 6' }
+        { src: '/images/gallery/banheiro-1.jpg', alt: 'Banheiro planejado pequeno com gabinete suspenso branco e espelheira LED em apartamento Florianópolis' },
+        { src: '/images/gallery/banheiro-2.jpg', alt: 'Banheiro de luxo planejado com mármore, nichos embutidos e iluminação LED Palhoça' },
+        { src: '/images/gallery/banheiro-3.jpg', alt: 'Gabinete sob medida banheiro pequeno com organização inteligente São José SC' },
+        { src: '/images/gallery/banheiro-4.jpg', alt: 'Espelheira planejada LED com tomadas integradas banheiro moderno Florianópolis' },
+        { src: '/images/gallery/banheiro-5.jpg', alt: 'Banheiro planejado com closet integrado madeira clara projeto completo' },
+        { src: '/images/gallery/banheiro-6.jpg', alt: 'Projeto 3D banheiro planejado sob medida antes e depois transformação' }
       ]
     },
     faq: {
-      title: 'Perguntas frequentes',
+      title: 'Perguntas Frequentes sobre Banheiro Planejado em Florianópolis',
       questions: [
         {
           question: 'Os móveis são resistentes à umidade do banheiro?',
-          answer: 'Sim! Utilizamos MDF naval e revestimentos especiais que são totalmente resistentes à umidade. Todos os materiais são testados e certificados para uso em áreas molhadas, garantindo durabilidade superior.'
-        },
-        {
-          question: 'Qual o prazo de instalação de um banheiro planejado?',
-          answer: 'O prazo médio é de 25 a 35 dias corridos após aprovação do projeto. Por ser um ambiente menor, geralmente a fabricação e instalação são mais rápidas que outros ambientes.'
+          answer: 'Sim! Todos os nossos móveis planejados para banheiro utilizam MDF naval e revestimentos especiais 100% resistentes à umidade e áreas molhadas. Estes materiais são certificados e testados especificamente para ambientes com exposição constante à água, garantindo que seu gabinete, espelheira e nichos embutidos mantenham a beleza e estrutura por muitos anos, sem deformação, manchas ou problemas de infiltração.'
         },
         {
           question: 'Vocês fazem projeto para banheiros pequenos?',
-          answer: 'Sim! Somos especialistas em otimizar espaços reduzidos. Criamos soluções inteligentes com gabinetes suspensos, nichos embutidos e espelheiras multifuncionais que maximizam a área útil.'
+          answer: 'Sim! Somos especialistas em projetos de banheiro planejado para espaços pequenos e compactos. Seja um apartamento no Centro de Florianópolis, em Palhoça ou São José, criamos soluções inteligentes que maximizam cada centímetro: gabinetes suspensos sob medida, nichos embutidos estratégicos, espelheiras multifuncionais e organizadores internos. Nosso projeto 3D mostra exatamente como transformar seu banheiro pequeno em um ambiente funcional, organizado e sofisticado.'
+        },
+        {
+          question: 'Qual o prazo de instalação de um banheiro planejado?',
+          answer: 'O prazo médio para um projeto completo de banheiro planejado é de 25 a 35 dias corridos após aprovação do projeto 3D. Este período inclui fabricação sob medida dos móveis (gabinete, espelheiras, nichos) e instalação profissional completa. Por ser um ambiente menor que cozinhas ou closets, a entrega costuma ser mais rápida. Você recebe um cronograma detalhado no orçamento inicial com todas as etapas.'
+        },
+        {
+          question: 'Quanto custa um banheiro planejado em Florianópolis?',
+          answer: 'O investimento em um banheiro planejado varia conforme o tamanho, materiais e acabamentos escolhidos. Em Florianópolis e região, projetos para banheiros pequenos de apartamento geralmente partem de valores mais acessíveis, enquanto banheiros de luxo com closet integrado e acabamentos premium têm investimento maior. Oferecemos orçamento gratuito com visita técnica e projeto 3D para você avaliar custo-benefício antes de qualquer compromisso. Solicite seu orçamento personalizado!'
         },
         {
           question: 'A iluminação da espelheira está inclusa?',
-          answer: 'Sim, a iluminação LED da espelheira está incluída no projeto. Trabalhamos com fitas LED de alta qualidade, com diferentes temperaturas de cor para você escolher.'
+          answer: 'Sim, a iluminação LED da espelheira planejada está incluída no projeto. Trabalhamos com fitas LED de alta qualidade e durabilidade, com diferentes temperaturas de cor (luz quente, neutra ou fria) para você escolher conforme preferência. A instalação elétrica segue todas as normas para áreas molhadas, garantindo segurança total no seu banheiro.'
         },
         {
-          question: 'Posso incluir tomadas no espelho?',
-          answer: 'Sim! Podemos integrar tomadas e até USB na espelheira, seguindo todas as normas de segurança elétrica para ambientes úmidos. É super prático para uso de secador, chapinha e outros aparelhos.'
+          question: 'Posso incluir tomadas e USB no espelho?',
+          answer: 'Sim! Podemos integrar tomadas padrão e entradas USB diretamente na espelheira planejada, super prático para uso de secador, chapinha, barbeador elétrico e aparelhos eletrônicos. Toda instalação elétrica segue rigorosamente as normas de segurança NBR para ambientes úmidos, com proteção IP adequada e aterramento. É um dos recursos mais solicitados em projetos de banheiro sob medida!'
+        },
+        {
+          question: 'Vocês atendem toda Grande Florianópolis?',
+          answer: 'Sim! Atendemos toda a Grande Florianópolis com nossos projetos de banheiro planejado sob medida. Realizamos projetos em Florianópolis (Centro, Trindade, Ingleses, Lagoa, Canasvieiras), Palhoça (Pedra Branca, Pagani), São José (Kobrasol, Campinas), Biguaçu e demais cidades da região. A visita técnica e medição são gratuitas em toda área de cobertura. Entre em contato e agende sua visita!'
         }
       ]
     },
@@ -300,14 +308,30 @@ export const ambientes: Ambiente[] = [
       ]
     },
     cta: {
-      title: 'O lugar onde você vive é uma expressão de sua vida',
-      description: 'Ele cresce conforme você cresce, ele inspira conforme você inspira',
-      buttonText: 'Solicitar Orçamento'
+      title: 'Pronto para Transformar Seu Banheiro?',
+      description: 'Receba um projeto 3D gratuito do seu banheiro planejado sob medida. Veja exatamente como ficarão os gabinetes, nichos e espelheiras antes de decidir. Atendemos Florianópolis, Palhoça, São José e região com visita técnica sem custo.',
+      buttonText: 'Solicitar Projeto 3D Grátis'
     },
     metadata: {
-      title: 'Banheiro Planejado sob Medida | Ricardo Móveis',
-      description: 'Projetos sofisticados de banheiros planejados com gabinetes, espelheiras e nichos. Materiais resistentes e design elegante para seu banheiro.',
-      keywords: ['banheiro planejado', 'gabinete para banheiro', 'espelheira planejada', 'móveis para banheiro', 'banheiro sob medida']
+      title: 'Banheiro Planejado Florianópolis e Palhoça | Ricardo Móveis',
+      description: 'Banheiro planejado sob medida em Florianópolis e região. Especialistas em banheiros pequenos e de luxo. Gabinetes, nichos e espelheiras LED. Orçamento grátis!',
+      keywords: [
+        'banheiro planejado Florianópolis',
+        'banheiro planejado Palhoça',
+        'banheiro sob medida São José',
+        'banheiro planejado Grande Florianópolis',
+        'banheiro pequeno planejado',
+        'banheiro de luxo planejado',
+        'gabinete banheiro sob medida',
+        'espelheira planejada LED',
+        'otimização espaço banheiro',
+        'nicho embutido banheiro',
+        'banheiro planejado apartamento',
+        'projeto 3D banheiro planejado',
+        'móveis planejados área molhada',
+        'banheiro planejado com closet',
+        'gabinete suspenso banheiro'
+      ]
     }
   },
   {

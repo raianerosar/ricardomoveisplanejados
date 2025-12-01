@@ -41,7 +41,7 @@ export default function HeroAmbiente({ title, subtitle, backgroundImage }: HeroA
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
             {title}
           </h1>
 

@@ -5,7 +5,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from '@/components/ui/Accordion';
 
 interface FAQQuestion {
   question: string;
@@ -38,7 +38,7 @@ export default function FAQAmbiente({ title, questions }: FAQAmbienteProps) {
                 className="bg-gray-50 rounded-lg px-6 border-none shadow-sm hover:shadow-md transition-shadow"
               >
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:no-underline py-6">
-                  {faq.question}
+                  <h3 className="text-lg font-semibold">{faq.question}</h3>
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed pb-6">
                   {faq.answer}
