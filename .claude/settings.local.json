@@ -1,11 +1,19 @@
 {
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(test:*)",
+      "Bash(git mv:*)",
+      "Bash(dir /s /b \"C:\\ricardomoveisplanejados\\src\")",
+      "Bash(findstr:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nRefatora estrutura de componentes e ajusta ordenação de seções\n\n- Renomeia Accordion.tsx para accordion.tsx para consistência de nomenclatura\n- Reordena seções na página de ambientes (FAQ após Social Grid)\n- Atualiza configurações locais do Claude Code\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ]
+  },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "shadcn"
-  ],
-  "permissions": {
-    "allow": [
-      "WebSearch"
-    ]
-  }
+  ]
 }

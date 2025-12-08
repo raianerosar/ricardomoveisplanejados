@@ -142,18 +142,18 @@ export default async function AmbientePage({ params }: AmbientePageProps) {
 
       <Separator className="my-0" />
 
-      {/* FAQ Section */}
-      <FAQAmbiente
-        title={ambiente.faq.title}
-        questions={ambiente.faq.questions}
-      />
-
-      <Separator className="my-0" />
-
       {/* Social Grid Section */}
       <SocialGrid
         title={ambiente.social.title}
         posts={ambiente.social.posts}
+      />
+
+      <Separator className="my-0" />
+
+      {/* FAQ Section */}
+      <FAQAmbiente
+        title={ambiente.faq.title}
+        questions={ambiente.faq.questions}
       />
 
       <Separator className="my-0" />
