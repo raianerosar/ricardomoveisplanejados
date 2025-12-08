@@ -5,6 +5,13 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { Polaroid } from "@/components/ui/Polaroid";
 
 export function Hero() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative bg-gradient-to-br from-slate-600 to-slate-800 text-white min-h-screen flex items-center overflow-hidden">
       {/* Background Image - Desktop */}
@@ -65,6 +72,7 @@ export function Hero() {
                   variant="outline"
                   size="md"
                   className="border-white text-white hover:bg-white hover:text-slate-800 w-full sm:w-auto"
+                  onClick={() => scrollToSection('projetos')}
                 >
                   Ver Nossos Projetos
                 </Button>

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import Image from 'next/image';
+import { MessageCircle } from 'lucide-react';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,12 +70,15 @@ export function Header() {
             >
               FAQ
             </button>
-            <Button
-              onClick={() => scrollToSection('contato')}
-              className="bg-yellow-500 hover:bg-yellow-600 text-black"
+            <a
+              href="https://wa.me/5548984242423?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20de%20móveis%20planejados."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-600 hover:bg-green-700 text-white h-[30px] w-[80px] flex items-center justify-center rounded-md transition-colors"
+              aria-label="Conversar no WhatsApp"
             >
-              Contato
-            </Button>
+              <MessageCircle className="w-5 h-5" />
+            </a>
           </nav>
 
           {/* Botão Menu Mobile */}
@@ -130,12 +134,15 @@ export function Header() {
               >
                 FAQ
               </button>
-              <Button
-                onClick={() => scrollToSection('contato')}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black w-full"
+              <a
+                href="https://wa.me/5548984242423?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20de%20móveis%20planejados."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-600 hover:bg-green-700 text-white h-[30px] w-[80px] flex items-center justify-center rounded-md transition-colors mx-auto"
+                aria-label="Conversar no WhatsApp"
               >
-                Contato
-              </Button>
+                <MessageCircle className="w-5 h-5" />
+              </a>
             </nav>
           </div>
         )}
