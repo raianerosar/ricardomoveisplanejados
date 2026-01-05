@@ -85,12 +85,12 @@ export const ambientes: Ambiente[] = [
     social: {
       title: 'Nosso Social',
       posts: [
-        { image: '/images/social/cozinha-post-1.jpg', link: '#' },
-        { image: '/images/social/cozinha-post-2.jpg', link: '#' },
-        { image: '/images/social/cozinha-post-3.jpg', link: '#' },
-        { image: '/images/social/cozinha-post-4.jpg', link: '#' },
-        { image: '/images/social/cozinha-post-5.jpg', link: '#' },
-        { image: '/images/social/cozinha-post-6.jpg', link: '#' }
+        { image: '/images/social/cozinha-post-1.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/cozinha-post-2.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/cozinha-post-3.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/cozinha-post-4.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/cozinha-post-5.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/cozinha-post-6.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' }
       ]
     },
     cta: {
@@ -152,7 +152,7 @@ export const ambientes: Ambiente[] = [
     gallery: {
       projectName: 'Projetos de Quartos',
       images: [
-        { src: '/images/gallery/quarto-1.jpg', alt: 'Quarto planejado 1' },
+        { src: '/images/gallery/quarto-1.jpg', alt: 'Quarto planejado com design de interiores de luxo' },
         { src: '/images/gallery/quarto-2.jpg', alt: 'Quarto planejado 2' },
         { src: '/images/gallery/quarto-3.jpg', alt: 'Quarto planejado 3' },
         { src: '/images/gallery/quarto-4.jpg', alt: 'Quarto planejado 4' },
@@ -188,12 +188,12 @@ export const ambientes: Ambiente[] = [
     social: {
       title: 'Nosso Social',
       posts: [
-        { image: '/images/social/quarto-post-1.jpg', link: '#' },
-        { image: '/images/social/quarto-post-2.jpg', link: '#' },
-        { image: '/images/social/quarto-post-3.jpg', link: '#' },
-        { image: '/images/social/quarto-post-4.jpg', link: '#' },
-        { image: '/images/social/quarto-post-5.jpg', link: '#' },
-        { image: '/images/social/quarto-post-6.jpg', link: '#' }
+        { image: '/images/social/quarto-post-1.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/quarto-post-2.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/quarto-post-3.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/quarto-post-4.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/quarto-post-5.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/quarto-post-6.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' }
       ]
     },
     cta: {
@@ -299,12 +299,12 @@ export const ambientes: Ambiente[] = [
     social: {
       title: 'Nosso Social',
       posts: [
-        { image: '/images/social/banheiro-post-1.jpg', link: '#' },
-        { image: '/images/social/banheiro-post-2.jpg', link: '#' },
-        { image: '/images/social/banheiro-post-3.jpg', link: '#' },
-        { image: '/images/social/banheiro-post-4.jpg', link: '#' },
-        { image: '/images/social/banheiro-post-5.jpg', link: '#' },
-        { image: '/images/social/banheiro-post-6.jpg', link: '#' }
+        { image: '/images/social/banheiro-post-1.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/banheiro-post-2.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/banheiro-post-3.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/banheiro-post-4.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/banheiro-post-5.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/banheiro-post-6.jpg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' }
       ]
     },
     cta: {
