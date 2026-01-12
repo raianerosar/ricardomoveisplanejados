@@ -101,7 +101,13 @@ export const ambientes: Ambiente[] = [
     metadata: {
       title: 'Cozinha Planejada sob Medida | Ricardo Móveis',
       description: 'Projetos personalizados de cozinhas planejadas com materiais premium e garantia estendida. Transforme sua cozinha em um espaço funcional e elegante.',
-      keywords: ['cozinha planejada', 'móveis planejados', 'cozinha sob medida', 'projeto de cozinha', 'móveis para cozinha']
+      keywords: [
+        'cozinha planejada', 'móveis planejados', 'cozinha sob medida', 'projeto de cozinha', 'móveis para cozinha',
+        'cozinha planejada Florianópolis', 'cozinha planejada Grande Florianópolis',
+        'cozinha americana planejada', 'cozinha compacta', 'armário cozinha sob medida',
+        'bancada cozinha planejada', 'ilha de cozinha', 'cozinha modulada',
+        'projeto 3D cozinha', 'móveis cozinha MDF'
+      ]
     }
   },
   {
@@ -204,7 +210,13 @@ export const ambientes: Ambiente[] = [
     metadata: {
       title: 'Quarto Planejado sob Medida | Ricardo Móveis',
       description: 'Projetos exclusivos de quartos planejados com guarda-roupas, cabeceiras e móveis personalizados. Conforto e organização para seu ambiente.',
-      keywords: ['quarto planejado', 'guarda-roupa planejado', 'móveis para quarto', 'dormitório planejado', 'closet planejado']
+      keywords: [
+        'quarto planejado', 'guarda-roupa planejado', 'móveis para quarto', 'dormitório planejado', 'closet planejado',
+        'quarto planejado Florianópolis', 'closet planejado Florianópolis',
+        'guarda-roupa sob medida', 'quarto casal planejado', 'quarto infantil planejado',
+        'quarto solteiro planejado', 'móveis quarto MDF', 'penteadeira planejada',
+        'closet Grande Florianópolis'
+      ]
     }
   },
   {
@@ -382,12 +394,12 @@ export const ambientes: Ambiente[] = [
     gallery: {
       projectName: 'Projetos de Salas',
       images: [
-        { src: '/images/gallery/sala-1.jpg', alt: 'Sala planejada 1' },
-        { src: '/images/gallery/sala-2.jpg', alt: 'Sala planejada 2' },
-        { src: '/images/gallery/sala-3.jpg', alt: 'Sala planejada 3' },
-        { src: '/images/gallery/sala-4.jpg', alt: 'Sala planejada 4' },
-        { src: '/images/gallery/sala-5.jpg', alt: 'Sala planejada 5' },
-        { src: '/images/gallery/sala-6.jpg', alt: 'Sala planejada 6' }
+        { src: '/images/gallery/sala-1.jpeg', alt: 'Sala planejada 1' },
+        { src: '/images/gallery/sala-2.jpeg', alt: 'Sala planejada 2' },
+        { src: '/images/gallery/sala-3.jpeg', alt: 'Sala planejada 3' },
+        { src: '/images/gallery/sala-4.jpeg', alt: 'Sala planejada 4' },
+        { src: '/images/gallery/sala-5.jpeg', alt: 'Sala planejada 5' },
+        { src: '/images/gallery/sala-6.jpeg', alt: 'Sala planejada 6' }
       ]
     },
     faq: {
@@ -418,12 +430,12 @@ export const ambientes: Ambiente[] = [
     social: {
       title: 'Nosso Social',
       posts: [
-        { image: '/images/social/sala-post-1.jpg', link: '#' },
-        { image: '/images/social/sala-post-2.jpg', link: '#' },
-        { image: '/images/social/sala-post-3.jpg', link: '#' },
-        { image: '/images/social/sala-post-4.jpg', link: '#' },
-        { image: '/images/social/sala-post-5.jpg', link: '#' },
-        { image: '/images/social/sala-post-6.jpg', link: '#' }
+        { image: '/images/social/sala-post-1.jpeg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/sala-post-2.jpeg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/sala-post-3.jpeg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/sala-post-4.jpeg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/sala-post-5.jpeg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' },
+        { image: '/images/social/sala-post-6.jpeg', link: 'https://www.instagram.com/ricardorosarmoveisplanejados' }
       ]
     },
     cta: {
@@ -434,7 +446,12 @@ export const ambientes: Ambiente[] = [
     metadata: {
       title: 'Sala Planejada sob Medida | Ricardo Móveis',
       description: 'Projetos modernos de salas planejadas com painéis de TV, estantes e móveis integrados. Transforme sua sala em um ambiente acolhedor e sofisticado.',
-      keywords: ['sala planejada', 'painel de TV', 'estante planejada', 'rack planejado', 'móveis para sala', 'sala de estar planejada']
+      keywords: [
+        'sala planejada', 'painel de TV', 'estante planejada', 'rack planejado', 'móveis para sala', 'sala de estar planejada',
+        'sala planejada Florianópolis', 'sala estar planejada', 'sala jantar planejada',
+        'rack planejado', 'estante sob medida', 'painel TV planejado',
+        'home theater planejado', 'móveis sala MDF', 'estante Grande Florianópolis'
+      ]
     }
   }
 ];

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export function About() {
@@ -15,17 +16,32 @@ export function About() {
           <FadeIn delay={0.1}>
             <div className="text-lg text-slate-600 space-y-6">
               <p>
-                Com anos de experiência no mercado de móveis planejados, a Ricardo Móveis
-                se destaca pela qualidade, inovação e atendimento personalizado.
+                Com sede em Palhoça e atuação em toda Grande Florianópolis, a Ricardo Móveis é referência em móveis planejados e marcenaria sob medida há mais de 15 anos. Nossa expertise em design de interiores já transformou mais de 1.200 ambientes residenciais e comerciais em Florianópolis, São José, Palhoça, Biguaçu e região.
               </p>
               <p>
-                Nossa equipe de profissionais especializados trabalha para transformar
-                seus ambientes em espaços funcionais e elegantes, sempre respeitando
-                seu estilo e necessidades.
+                Especializados em móveis planejados para todos os ambientes: <strong>cozinhas planejadas</strong> com projeto 3D e materiais premium (MDF, MDP), <strong>quartos completos</strong> com guarda-roupas sob medida e closets funcionais, <strong>banheiros planejados</strong> com armários e nichos personalizados, <strong>salas de estar e jantar</strong> com estantes, painéis para TV e racks modernos, e <strong>home offices produtivos</strong> com móveis ergonômicos.
               </p>
               <p>
-                Utilizamos materiais de alta qualidade e tecnologia de ponta para
-                garantir durabilidade e acabamento impecável em todos os nossos projetos.
+                Nossa equipe conta com designers especializados, marceneiros experientes e instaladores qualificados. Trabalhamos com as melhores marcas de acabamentos e ferragens, garantindo durabilidade e sofisticação aos seus móveis.
+              </p>
+              <p>
+                Do projeto 3D à instalação final, acompanhamos cada etapa com atenção aos detalhes. Oferecemos garantia estendida e suporte pós-venda, porque acreditamos que móveis planejados são investimento para toda a vida. Atendemos toda Grande Florianópolis com visita técnica e orçamento gratuitos.
+              </p>
+              <p className="mt-6">
+                Confira nossos projetos de{' '}
+                <Link href="/ambientes/cozinha-planejada" className="text-yellow-600 font-semibold hover:text-yellow-700 hover:underline">
+                  cozinha planejada
+                </Link>,{' '}
+                <Link href="/ambientes/quarto-planejado" className="text-yellow-600 font-semibold hover:text-yellow-700 hover:underline">
+                  quarto planejado
+                </Link>,{' '}
+                <Link href="/ambientes/banheiro-planejado" className="text-yellow-600 font-semibold hover:text-yellow-700 hover:underline">
+                  banheiro planejado
+                </Link>{' '}
+                e{' '}
+                <Link href="/ambientes/sala-planejada" className="text-yellow-600 font-semibold hover:text-yellow-700 hover:underline">
+                  sala planejada
+                </Link>.
               </p>
             </div>
           </FadeIn>

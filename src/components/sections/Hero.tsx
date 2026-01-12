@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { Polaroid } from "@/components/ui/Polaroid";
@@ -49,13 +50,25 @@ export function Hero() {
             </FadeIn>
             <FadeIn delay={0.2}>
               <h2 className="text-3xl md:text-2xl font-bold mb-8 text-slate-200">
-                Móveis Planejados que Transformam Ambientes
+                Móveis Planejados em Florianópolis | Design e Qualidade Sob Medida
               </h2>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <p className="text-lg mb-6 max-w-2xl lg:max-w-none text-slate-100">
-                Especialistas em móveis planejados para cozinha, quarto e banheiro.
-                Transforme sua casa com soluções personalizadas e de alta qualidade.
+              <p className="text-lg mb-4 max-w-2xl lg:max-w-none text-slate-100">
+                Transformando ambientes em toda Grande Florianópolis há mais de 15 anos. Cozinhas, quartos, banheiros e closets planejados com projeto 3D gratuito. Atendemos Florianópolis, Palhoça, São José e região com excelência e acabamento premium.
+              </p>
+              <p className="text-base mb-6 max-w-2xl lg:max-w-none text-slate-200">
+                Especializados em{' '}
+                <Link href="/ambientes/cozinha-planejada" className="text-yellow-400 hover:text-yellow-300 underline font-medium">
+                  cozinhas planejadas
+                </Link>,{' '}
+                <Link href="/ambientes/quarto-planejado" className="text-yellow-400 hover:text-yellow-300 underline font-medium">
+                  quartos sob medida
+                </Link>,{' '}
+                <Link href="/ambientes/banheiro-planejado" className="text-yellow-400 hover:text-yellow-300 underline font-medium">
+                  banheiros planejados
+                </Link>{' '}
+                e muito mais para toda Grande Florianópolis.
               </p>
             </FadeIn>
             <FadeIn delay={0.4}>
@@ -88,7 +101,7 @@ export function Hero() {
                 <div className="absolute top-0 left-0 w-48 md:w-80 z-10">
                   <Polaroid
                     src="/imagens/p1.png"
-                    alt="Cozinha planejada"
+                    alt="Cozinha planejada sob medida Florianópolis - Móveis planejados modernos"
                     rotation={-6}
                     animationDelay={0}
                   />
@@ -98,7 +111,7 @@ export function Hero() {
                 <div className="absolute top-12 right-0 w-48 md:w-80 z-20">
                   <Polaroid
                     src="/imagens/p2.png"
-                    alt="Quarto planejado"
+                    alt="Quarto planejado Grande Florianópolis - Guarda-roupa sob medida"
                     rotation={4}
                     animationDelay={0.7}
                   />
@@ -108,7 +121,7 @@ export function Hero() {
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 md:w-80 z-30">
                   <Polaroid
                     src="/imagens/p3.png"
-                    alt="Móveis sob medida"
+                    alt="Móveis sob medida Florianópolis - Banheiro e sala planejados"
                     rotation={-3}
                     animationDelay={1.4}
                   />

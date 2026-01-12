@@ -5,9 +5,9 @@ export const projects: Project[] = [
     slug: "cozinha-moderna",
     title: "Cozinha Moderna",
     category: "Cozinha",
-    image: "/imagens/cozainha-r.png",
+    image: "/imagens/cozinha-moderna.jpg",
     gallery: [
-      "/imagens/cozainha-r.png",
+      "/imagens/cozinha-moderna.jpg",
       // Adicione mais imagens aqui quando tiver
     ],
     description: "Projeto de cozinha planejada com design moderno e funcional. Desenvolvida com materiais de alta qualidade, esta cozinha combina estética contemporânea com praticidade no dia a dia. Cada detalhe foi pensado para otimizar o espaço e proporcionar conforto aos usuários.",
@@ -34,9 +34,9 @@ export const projects: Project[] = [
     slug: "quarto-planejado",
     title: "Quarto Planejado",
     category: "Quarto",
-    image: "/imagens/quarto-r.png",
+    image: "/imagens/quarto-planejado.jpg",
     gallery: [
-      "/imagens/quarto-r.png",
+      "/imagens/quarto-planejado.jpg",
       // Adicione mais imagens aqui quando tiver
     ],
     description: "Ambiente acolhedor e funcional com guarda-roupa planejado que aproveita cada centímetro do espaço disponível. O projeto inclui soluções inteligentes de armazenamento e um design que combina elegância e praticidade.",
@@ -63,9 +63,9 @@ export const projects: Project[] = [
     slug: "banheiro-elegante",
     title: "Banheiro Elegante",
     category: "Banheiro",
-    image: "/imagens/banheiro-r1.png",
+    image: "/imagens/banheiro-elegante.jpg",
     gallery: [
-      "/imagens/banheiro-r1.png",
+      "/imagens/banheiro-elegante.jpg",
       // Adicione mais imagens aqui quando tiver
     ],
     description: "Projeto sofisticado de banheiro planejado com móveis sob medida que maximizam o aproveitamento do espaço. Design clean com materiais resistentes à umidade e acabamentos de alto padrão.",
@@ -92,9 +92,9 @@ export const projects: Project[] = [
     slug: "saguao-personalizado",
     title: "Saguão Personalizado",
     category: "Sala",
-    image: "/imagens/saguao.png",
+    image: "/imagens/sala-planejada.jpg",
     gallery: [
-      "/imagens/saguao.png",
+      "/imagens/sala-planejada.jpg",
       // Adicione mais imagens aqui quando tiver
     ],
     description: "Projeto exclusivo de móveis planejados para sala de estar, criando um ambiente sofisticado e aconchegante. O design integrado valoriza o espaço e proporciona funcionalidade sem comprometer a estética.",

@@ -35,7 +35,7 @@ export function Gallery() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Conheça alguns dos projetos que realizamos com excelência e dedicação em São José, SC
+              Conheça alguns dos projetos que realizamos com excelência e dedicação em Grande Florianópolis
             </p>
           </FadeIn>
         </div>
@@ -71,7 +71,7 @@ export function Gallery() {
                   <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
                     <Image
                       src={project.image}
-                      alt={`${project.title} - Móveis Planejados São José`}
+                      alt={`${project.title} - Móveis Planejados Florianópolis sob medida`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
