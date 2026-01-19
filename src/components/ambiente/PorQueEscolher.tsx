@@ -43,8 +43,8 @@ export default function PorQueEscolher({ title, items }: PorQueEscolherProps) {
                     {getIcon(item.icon)}
                   </div>
                 </div>
-                <CardTitle asChild className="text-xl font-bold text-gray-900">
-                  <h3>{item.title}</h3>
+                <CardTitle className="text-xl font-bold text-gray-900">
+                  {item.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>

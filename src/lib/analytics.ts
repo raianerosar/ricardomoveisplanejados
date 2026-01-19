@@ -65,11 +65,45 @@ export const trackButtonClick = (buttonName: string, section: string) => {
 
 export const trackPageView = (pageName: string) => {
   // Google Analytics (já é feito automaticamente)
-  
+
   // Facebook Pixel para páginas específicas
   if (typeof window !== 'undefined' && window.fbq) {
     window.fbq('track', 'PageView', {
       content_name: pageName,
+    });
+  }
+};
+
+export const trackQuestionnaireStart = () => {
+  // Google Analytics
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'questionnaire_start', {
+      event_category: 'engagement',
+      event_label: 'cta_section',
+    });
+  }
+
+  // Facebook Pixel
+  if (typeof window !== 'undefined' && window.fbq) {
+    window.fbq('track', 'ViewContent', {
+      content_name: 'questionnaire_modal',
+    });
+  }
+};
+
+export const trackQuestionnaireComplete = () => {
+  // Google Analytics
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'questionnaire_complete', {
+      event_category: 'conversion',
+      event_label: 'questionnaire_form',
+    });
+  }
+
+  // Facebook Pixel
+  if (typeof window !== 'undefined' && window.fbq) {
+    window.fbq('track', 'Lead', {
+      content_name: 'questionnaire_complete',
     });
   }
 };

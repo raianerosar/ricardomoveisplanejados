@@ -163,6 +163,19 @@
   }
 }
 
+/* Shake animation for error feedback */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
 @layer utilities {
   .animate-float {
     animation: floatRotate 4s ease-in-out infinite;
@@ -174,5 +187,9 @@
 
   .animate-accordion-up {
     animation: accordion-up 200ms ease-out;
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
   }
 }

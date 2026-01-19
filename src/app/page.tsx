@@ -3,6 +3,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
 import { About } from '@/components/sections/About';
 import { Gallery } from '@/components/sections/Gallery';
+import { CTASection } from '@/components/sections/CTASection';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { Contact } from '@/components/sections/Contact';
 import { Location } from '@/components/sections/Location';
@@ -21,6 +22,9 @@ export default function Home() {
         </section>
         <section id="projetos">
           <Gallery />
+        </section>
+        <section id="experiencia">
+          <CTASection />
         </section>
         <section id="depoimentos">
           <Testimonials />
