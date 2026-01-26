@@ -54,6 +54,14 @@ const initialFormData: FormData = {
   },
 };
 
+type StepInfo =
+  | { type: 'selection'; title: string }
+  | { type: 'estilo'; title: string; ambienteIndex: number; ambienteNome: string }
+  | { type: 'dimensoes'; title: string; ambienteIndex: number; ambienteNome: string }
+  | { type: 'necessidades'; title: string }
+  | { type: 'orcamento'; title: string }
+  | { type: 'contato'; title: string };
+
 export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -68,7 +76,7 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
     ? 4  // Mínimo de etapas quando nenhum ambiente selecionado
     : 1 + (formData.ambientes.length * 2) + 3;
 
-  const getCurrentStepInfo = () => {
+  const getCurrentStepInfo = (): StepInfo | undefined => {
     if (currentStep === 0) {
       return { type: 'selection', title: 'Seleção de Ambientes' };
     }
@@ -83,12 +91,21 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
       const isEstilo = dynamicIndex % 2 === 0;
       const ambienteNome = formData.ambientes[ambienteIndex];
 
-      return {
-        type: isEstilo ? 'estilo' : 'dimensoes',
-        ambienteIndex,
-        ambienteNome,
-        title: isEstilo ? `Estilo: ${ambienteNome}` : `Dimensões: ${ambienteNome}`
-      };
+      if (isEstilo) {
+        return {
+          type: 'estilo',
+          ambienteIndex,
+          ambienteNome,
+          title: `Estilo: ${ambienteNome}`
+        };
+      } else {
+        return {
+          type: 'dimensoes',
+          ambienteIndex,
+          ambienteNome,
+          title: `Dimensões: ${ambienteNome}`
+        };
+      }
     }
 
     // Etapas fixas finais

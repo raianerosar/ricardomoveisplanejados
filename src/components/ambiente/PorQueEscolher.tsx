@@ -16,7 +16,8 @@ interface PorQueEscolherProps {
 
 export default function PorQueEscolher({ title, items }: PorQueEscolherProps) {
   const getIcon = (iconName: string) => {
-    const Icon = (LucideIcons as any)[iconName];
+    const icons = LucideIcons as unknown as Record<string, React.ElementType>;
+    const Icon = icons[iconName];
     return Icon ? <Icon className="w-6 h-6" /> : null;
   };
 
