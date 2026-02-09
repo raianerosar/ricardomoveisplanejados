@@ -123,6 +123,13 @@ export default function QuestionarioPage() {
   const [nome, setNome] = useState<string>('')
   const [whatsapp, setWhatsapp] = useState<string>('')
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+
+  const formatWhatsapp = (value: string) => {
+    const digits = value.replace(/\D/g, '').slice(0, 11)
+    if (digits.length <= 2) return digits
+    if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
+  }
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -939,7 +946,7 @@ export default function QuestionarioPage() {
                     type="tel"
                     id="whatsapp"
                     value={whatsapp}
-                    onChange={(e) => setWhatsapp(e.target.value)}
+                    onChange={(e) => setWhatsapp(formatWhatsapp(e.target.value))}
                     placeholder="(00) 00000-0000"
                     className="w-full p-4 border-2 border-slate-200 rounded-lg focus:border-yellow-500 focus:outline-none transition-colors"
                   />

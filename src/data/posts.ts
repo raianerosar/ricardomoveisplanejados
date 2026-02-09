@@ -269,7 +269,7 @@ Boa iluminação é crucial:
 Um closet planejado é investimento em qualidade de vida. Com o projeto certo, você ganha tempo, organização e prazer em se arrumar todos os dias.
     `,
     author: { name: 'Ricardo Móveis' },
-    coverImage: '/images/gallery/closet-1.jpg',
+    coverImage: '/images/gallery/quarto-2.jpg',
     publishedAt: '2024-03-25',
     category: 'Closet',
     tags: ['closet planejado', 'organização', 'guarda-roupa', 'móveis sob medida'],
@@ -371,7 +371,7 @@ Para videoconferências:
 Um home office bem planejado é investimento em saúde e produtividade. Com móveis adequados e organização, trabalhar em casa pode ser ainda melhor que no escritório.
     `,
     author: { name: 'Ricardo Móveis' },
-    coverImage: '/images/gallery/escritorio-1.jpg',
+    coverImage: '/images/gallery/sala-1.jpeg',
     publishedAt: '2024-04-05',
     category: 'Home Office',
     tags: ['home office', 'escritório planejado', 'produtividade', 'trabalho remoto'],
@@ -479,7 +479,7 @@ Móveis planejados oferecem:
 Uma sala bem planejada equilibra estética e função. Com móveis sob medida, você aproveita cada centímetro e cria um ambiente que reflete seu estilo de vida.
     `,
     author: { name: 'Ricardo Móveis' },
-    coverImage: '/images/gallery/sala-1.jpg',
+    coverImage: '/images/gallery/sala-2.jpeg',
     publishedAt: '2024-04-18',
     category: 'Sala',
     tags: ['sala de estar', 'painel de TV', 'móveis planejados', 'decoração'],
@@ -591,7 +591,7 @@ Divida a lavanderia em áreas:
 Uma lavanderia organizada transforma uma tarefa chata em algo mais eficiente. Com planejamento, até o menor espaço pode ser funcional.
     `,
     author: { name: 'Ricardo Móveis' },
-    coverImage: '/images/gallery/lavanderia-1.jpg',
+    coverImage: '/images/gallery/cozinha-2.jpg',
     publishedAt: '2024-05-02',
     category: 'Lavanderia',
     tags: ['lavanderia planejada', 'área de serviço', 'organização', 'espaços pequenos'],
@@ -716,7 +716,7 @@ Natureza como extensão do espaço.
 Uma área gourmet bem planejada valoriza o imóvel e sua qualidade de vida. Com projeto adequado, cada churrasco vira um evento especial.
     `,
     author: { name: 'Ricardo Móveis' },
-    coverImage: '/images/gallery/area-gourmet-1.jpg',
+    coverImage: '/images/gallery/cozinha-3.jpg',
     publishedAt: '2024-05-20',
     category: 'Área Gourmet',
     tags: ['área gourmet', 'churrasqueira', 'espaço gourmet', 'móveis planejados'],
@@ -841,7 +841,7 @@ Em espaços pequenos, bagunça é amplificada:
 Morar pequeno não significa morar mal. Com móveis planejados e design inteligente, cada metro quadrado pode ser aproveitado ao máximo, criando um lar funcional e acolhedor.
     `,
     author: { name: 'Ricardo Móveis' },
-    coverImage: '/images/gallery/apartamento-pequeno-1.jpg',
+    coverImage: '/images/gallery/sala-3.jpeg',
     publishedAt: '2024-06-08',
     category: 'Dicas',
     tags: ['apartamento pequeno', 'móveis compactos', 'espaços pequenos', 'organização'],
@@ -1006,7 +1006,7 @@ Madeira natural, sem processos de reconstituição.
 Não existe material perfeito, existe o material certo para cada aplicação. Um bom projeto combina materiais de forma inteligente, equilibrando custo, durabilidade e estética.
     `,
     author: { name: 'Ricardo Móveis' },
-    coverImage: '/images/gallery/materiais-1.jpg',
+    coverImage: '/images/gallery/cozinha-4.jpg',
     publishedAt: '2024-06-25',
     category: 'Materiais',
     tags: ['MDF', 'MDP', 'materiais', 'móveis planejados', 'madeira'],
@@ -1139,7 +1139,7 @@ Camadas de luz:
 Um quarto infantil bem planejado cresce junto com a criança, oferecendo segurança, estímulo e funcionalidade em cada fase. Investir em versatilidade hoje evita gastos amanhã.
     `,
     author: { name: 'Ricardo Móveis' },
-    coverImage: '/images/gallery/quarto-infantil-1.jpg',
+    coverImage: '/images/gallery/quarto-3.jpg',
     publishedAt: '2024-07-10',
     category: 'Quarto',
     tags: ['quarto infantil', 'quarto criança', 'móveis infantis', 'decoração infantil'],
@@ -1287,7 +1287,7 @@ Clara ou escura:
 A escolha de cores para móveis planejados deve equilibrar gosto pessoal, funcionalidade e harmonia. Cores neutras na estrutura permitem mudanças na decoração; cores ousadas são compromissos maiores, mas criam personalidade única.
     `,
     author: { name: 'Ricardo Móveis' },
-    coverImage: '/images/gallery/cores-moveis-1.jpg',
+    coverImage: '/images/gallery/sala-4.jpeg',
     publishedAt: '2024-07-28',
     category: 'Dicas',
     tags: ['cores', 'decoração', 'design de interiores', 'paleta de cores'],

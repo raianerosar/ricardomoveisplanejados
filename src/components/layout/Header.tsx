@@ -21,7 +21,10 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <button
+            onClick={() => scrollToSection('inicio')}
+            className="flex items-center space-x-2 cursor-pointer"
+          >
             <Image
               src="/logo-ricardo.png"
               alt="Ricardo Móveis Logo"
@@ -30,43 +33,43 @@ export function Header() {
               className="w-14 h-14"
             />
             <span className="text-xl font-bold text-slate-800">Ricardo Móveis</span>
-          </div>
+          </button>
 
           {/* Menu Desktop */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button 
+            <button
               onClick={() => scrollToSection('inicio')}
-              className="text-slate-600 hover:text-slate-900 font-medium"
+              className="text-slate-600 hover:text-slate-900 font-medium cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
             >
               Início
             </button>
             <button
               onClick={() => scrollToSection('sobre')}
-              className="text-slate-600 hover:text-slate-900 font-medium"
+              className="text-slate-600 hover:text-slate-900 font-medium cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
             >
               Sobre
             </button>
             <button
               onClick={() => scrollToSection('projetos')}
-              className="text-slate-600 hover:text-slate-900 font-medium"
+              className="text-slate-600 hover:text-slate-900 font-medium cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
             >
               Projetos
             </button>
             <button
               onClick={() => scrollToSection('depoimentos')}
-              className="text-slate-600 hover:text-slate-900 font-medium"
+              className="text-slate-600 hover:text-slate-900 font-medium cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
             >
               Depoimentos
             </button>
             <button
               onClick={() => scrollToSection('onde-trabalhamos')}
-              className="text-slate-600 hover:text-slate-900 font-medium"
+              className="text-slate-600 hover:text-slate-900 font-medium cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
             >
               Onde Trabalhamos
             </button>
             <button
               onClick={() => scrollToSection('faq')}
-              className="text-slate-600 hover:text-slate-900 font-medium"
+              className="text-slate-600 hover:text-slate-900 font-medium cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
             >
               FAQ
             </button>
@@ -98,39 +101,39 @@ export function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-slate-200">
             <nav className="flex flex-col space-y-4">
-              <button 
+              <button
                 onClick={() => scrollToSection('inicio')}
-                className="text-slate-600 hover:text-slate-900 font-medium text-left"
+                className="text-slate-600 hover:text-slate-900 font-medium text-left cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
               >
                 Início
               </button>
               <button
                 onClick={() => scrollToSection('sobre')}
-                className="text-slate-600 hover:text-slate-900 font-medium text-left"
+                className="text-slate-600 hover:text-slate-900 font-medium text-left cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
               >
                 Sobre
               </button>
               <button
                 onClick={() => scrollToSection('projetos')}
-                className="text-slate-600 hover:text-slate-900 font-medium text-left"
+                className="text-slate-600 hover:text-slate-900 font-medium text-left cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
               >
                 Projetos
               </button>
               <button
                 onClick={() => scrollToSection('depoimentos')}
-                className="text-slate-600 hover:text-slate-900 font-medium text-left"
+                className="text-slate-600 hover:text-slate-900 font-medium text-left cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
               >
                 Depoimentos
               </button>
               <button
                 onClick={() => scrollToSection('onde-trabalhamos')}
-                className="text-slate-600 hover:text-slate-900 font-medium text-left"
+                className="text-slate-600 hover:text-slate-900 font-medium text-left cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
               >
                 Onde Trabalhamos
               </button>
               <button
                 onClick={() => scrollToSection('faq')}
-                className="text-slate-600 hover:text-slate-900 font-medium text-left"
+                className="text-slate-600 hover:text-slate-900 font-medium text-left cursor-pointer transition-all duration-200 hover:underline underline-offset-4"
               >
                 FAQ
               </button>

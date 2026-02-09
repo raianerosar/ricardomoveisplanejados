@@ -10,6 +10,13 @@ import {
 import { Button } from '@/components/ui/Button';
 import { trackQuestionnaireComplete } from '@/lib/analytics';
 
+const formatPhone = (value: string) => {
+  const digits = value.replace(/\D/g, '').slice(0, 11);
+  if (digits.length <= 2) return digits.length ? `(${digits}` : '';
+  if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+};
+
 interface QuestionnaireModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -673,7 +680,7 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
             onChange={(e) =>
               setFormData({
                 ...formData,
-                contato: { ...formData.contato, telefone: e.target.value },
+                contato: { ...formData.contato, telefone: formatPhone(e.target.value) },
               })
             }
             className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
