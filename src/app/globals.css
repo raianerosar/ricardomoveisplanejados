@@ -116,6 +116,9 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
   }
@@ -192,4 +195,52 @@
   .animate-shake {
     animation: shake 0.5s ease-in-out;
   }
+}
+
+/* Estilos para conteúdo de artigos do blog */
+.article-content {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #475569;
+}
+
+.article-content h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 3rem 0 1.25rem;
+  padding-left: 1rem;
+  border-left: 4px solid #eab308;
+  scroll-margin-top: 6rem;
+}
+
+.article-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #334155;
+  margin: 2rem 0 1rem;
+}
+
+.article-content p {
+  margin: 1.25rem 0;
+}
+
+.article-content ul {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.article-content li {
+  margin: 0.75rem 0;
+  padding-left: 0.5rem;
+}
+
+.article-content li::marker {
+  color: #eab308;
+}
+
+.article-content strong {
+  color: #1e293b;
+  font-weight: 600;
 }

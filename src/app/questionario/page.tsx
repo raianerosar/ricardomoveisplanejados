@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FadeIn } from '@/components/ui/fade-in'
-import { trackPageView, trackButtonClick } from '@/lib/analytics'
+import { trackPageView, trackButtonClick, trackQuestionnaireComplete } from '@/lib/analytics'
 
 interface Ambiente {
   id: string
@@ -113,45 +113,48 @@ function getEstiloImagem(ambienteId: string, estiloIndex: number, extensao: stri
   return `/images/gallery/${ambienteId}-${imageNumber}.${extensao}`
 }
 
-function getWhatsAppLink(
-  ambiente: string,
-  estilo: string,
-  coresSelecionadas: string[],
-  led: string,
-  orcamento: string
-): string {
-  const numero = '5548984242423'
-  const mensagem = `Olá! Tenho interesse em ${ambiente} no estilo ${estilo}.
-
-Cores/Acabamentos: ${coresSelecionadas.join(', ')}
-Iluminação LED: ${led}
-Orçamento: ${orcamento}
-
-Gostaria de solicitar um orçamento.`
-  return `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
-}
-
 export default function QuestionarioPage() {
   const [etapa, setEtapa] = useState<number>(1)
-  const [ambienteSelecionado, setAmbienteSelecionado] = useState<Ambiente | null>(null)
-  const [estiloSelecionado, setEstiloSelecionado] = useState<Estilo | null>(null)
+  const [ambientesSelecionados, setAmbientesSelecionados] = useState<Ambiente[]>([])
+  const [estilosSelecionados, setEstilosSelecionados] = useState<Estilo[]>([])
   const [coresSelecionadas, setCoresSelecionadas] = useState<string[]>([])
-  const [ledSelecionado, setLedSelecionado] = useState<string | null>(null)
+  const [ledsSelecionados, setLedsSelecionados] = useState<OpcaoLED[]>([])
+  const [orcamentoSelecionado, setOrcamentoSelecionado] = useState<string | null>(null)
+  const [nome, setNome] = useState<string>('')
+  const [whatsapp, setWhatsapp] = useState<string>('')
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   useEffect(() => {
     trackPageView('questionario')
   }, [])
 
-  const handleAmbienteClick = (ambiente: Ambiente) => {
+  const handleAmbienteToggle = (ambiente: Ambiente) => {
     trackButtonClick(ambiente.titulo, 'questionario_etapa1')
-    setAmbienteSelecionado(ambiente)
+    setAmbientesSelecionados(prev =>
+      prev.some(a => a.id === ambiente.id)
+        ? prev.filter(a => a.id !== ambiente.id)
+        : [...prev, ambiente]
+    )
+  }
+
+  const handleAmbientesContinuar = () => {
+    if (ambientesSelecionados.length === 0) return
     setEtapa(2)
   }
 
-  const handleEstiloClick = (estilo: Estilo) => {
-    if (!ambienteSelecionado) return
-    trackButtonClick(`${ambienteSelecionado.titulo} - ${estilo.titulo}`, 'questionario_etapa2')
-    setEstiloSelecionado(estilo)
+  const handleEstiloToggle = (estilo: Estilo) => {
+    trackButtonClick(estilo.titulo, 'questionario_etapa2')
+    setEstilosSelecionados(prev =>
+      prev.some(e => e.id === estilo.id)
+        ? prev.filter(e => e.id !== estilo.id)
+        : [...prev, estilo]
+    )
+  }
+
+  const handleEstilosContinuar = () => {
+    if (estilosSelecionados.length === 0) return
     setEtapa(3)
   }
 
@@ -169,37 +172,99 @@ export default function QuestionarioPage() {
     setEtapa(4)
   }
 
-  const handleLEDClick = (opcao: OpcaoLED) => {
+  const handleLEDToggle = (opcao: OpcaoLED) => {
     trackButtonClick(`LED: ${opcao.titulo}`, 'questionario_etapa4')
-    setLedSelecionado(opcao.titulo)
+    setLedsSelecionados(prev =>
+      prev.some(l => l.id === opcao.id)
+        ? prev.filter(l => l.id !== opcao.id)
+        : [...prev, opcao]
+    )
+  }
+
+  const handleLEDContinuar = () => {
+    if (ledsSelecionados.length === 0) return
     setEtapa(5)
   }
 
   const handleOrcamentoClick = (faixa: FaixaOrcamento) => {
-    if (!ambienteSelecionado || !estiloSelecionado || !ledSelecionado) return
+    if (ambientesSelecionados.length === 0 || estilosSelecionados.length === 0 || ledsSelecionados.length === 0) return
     trackButtonClick(`Orçamento: ${faixa.titulo}`, 'questionario_etapa5')
-    window.location.href = getWhatsAppLink(
-      ambienteSelecionado.titulo,
-      estiloSelecionado.titulo,
-      coresSelecionadas,
-      ledSelecionado,
-      faixa.titulo
-    )
+    setOrcamentoSelecionado(faixa.titulo)
+    setEtapa(6)
+  }
+
+  const handleContatoSubmit = async () => {
+    // Validação
+    if (nome.trim().length < 2) {
+      setSubmitError('Nome deve ter pelo menos 2 caracteres')
+      return
+    }
+    if (whatsapp.replace(/\D/g, '').length < 10) {
+      setSubmitError('WhatsApp deve ter pelo menos 10 dígitos')
+      return
+    }
+    if (ambientesSelecionados.length === 0 || estilosSelecionados.length === 0 || ledsSelecionados.length === 0 || !orcamentoSelecionado) {
+      setSubmitError('Dados incompletos. Por favor, volte e preencha todas as etapas.')
+      return
+    }
+
+    setSubmitError(null)
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/questionario-simples', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ambientes: ambientesSelecionados.map(a => a.titulo),
+          estilos: estilosSelecionados.map(e => e.titulo),
+          cores: coresSelecionadas,
+          leds: ledsSelecionados.map(l => l.titulo),
+          orcamento: orcamentoSelecionado,
+          nome: nome.trim(),
+          whatsapp: whatsapp.trim(),
+        }),
+      })
+
+      // Verificar se a resposta é JSON
+      const contentType = response.headers.get('content-type')
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('Erro no servidor. Tente novamente mais tarde.')
+      }
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao enviar solicitação')
+      }
+
+      trackQuestionnaireComplete()
+      setIsSubmitted(true)
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Erro ao enviar. Tente novamente.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleVoltar = () => {
     if (etapa === 2) {
       setEtapa(1)
-      setAmbienteSelecionado(null)
+      setAmbientesSelecionados([])
     } else if (etapa === 3) {
       setEtapa(2)
-      setEstiloSelecionado(null)
+      setEstilosSelecionados([])
     } else if (etapa === 4) {
       setEtapa(3)
       setCoresSelecionadas([])
     } else if (etapa === 5) {
       setEtapa(4)
-      setLedSelecionado(null)
+      setLedsSelecionados([])
+    } else if (etapa === 6) {
+      setEtapa(5)
+      setOrcamentoSelecionado(null)
     }
   }
 
@@ -209,6 +274,7 @@ export default function QuestionarioPage() {
     { numero: 3, label: 'Cores' },
     { numero: 4, label: 'LED' },
     { numero: 5, label: 'Orçamento' },
+    { numero: 6, label: 'Contato' },
   ]
 
   return (
@@ -282,70 +348,90 @@ export default function QuestionarioPage() {
             {/* Grid de cards de ambientes */}
             <FadeIn delay={0.1}>
               <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                {ambientes.map((ambiente) => (
-                  <button
-                    key={ambiente.id}
-                    onClick={() => handleAmbienteClick(ambiente)}
-                    className="relative h-64 md:h-80 rounded-lg overflow-hidden cursor-pointer group focus:outline-none focus:ring-4 focus:ring-yellow-500 transition-all"
-                  >
-                    {/* Imagem de fundo */}
-                    <Image
-                      src={ambiente.imagem}
-                      alt={ambiente.titulo}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
+                {ambientes.map((ambiente) => {
+                  const isSelected = ambientesSelecionados.some(a => a.id === ambiente.id)
+                  return (
+                    <button
+                      key={ambiente.id}
+                      onClick={() => handleAmbienteToggle(ambiente)}
+                      className={`relative h-64 md:h-80 rounded-lg overflow-hidden cursor-pointer group focus:outline-none focus:ring-4 focus:ring-yellow-500 transition-all ${
+                        isSelected ? 'ring-4 ring-yellow-500' : ''
+                      }`}
+                    >
+                      {/* Imagem de fundo */}
+                      <Image
+                        src={ambiente.imagem}
+                        alt={ambiente.titulo}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
 
-                    {/* Overlay gradiente */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                      {/* Overlay gradiente */}
+                      <div className={`absolute inset-0 bg-gradient-to-t ${isSelected ? 'from-yellow-900/80 via-black/30' : 'from-black/80 via-black/30'} to-transparent`} />
 
-                    {/* Conteúdo do texto */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                        {ambiente.titulo}
-                      </h3>
-                      <p className="text-sm md:text-base opacity-90">
-                        {ambiente.descricao}
-                      </p>
-                    </div>
-
-                    {/* Indicador de hover */}
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="bg-yellow-500 text-black rounded-full p-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="m9 18 6-6-6-6" />
-                        </svg>
+                      {/* Conteúdo do texto */}
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                          {ambiente.titulo}
+                        </h3>
+                        <p className="text-sm md:text-base opacity-90">
+                          {ambiente.descricao}
+                        </p>
                       </div>
-                    </div>
-                  </button>
-                ))}
+
+                      {/* Indicador de seleção */}
+                      {isSelected && (
+                        <div className="absolute top-4 right-4">
+                          <div className="bg-yellow-500 text-black rounded-full p-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                          </div>
+                        </div>
+                      )}
+                    </button>
+                  )
+                })}
               </div>
             </FadeIn>
 
-            {/* Informação adicional */}
+            {/* Botão Continuar */}
             <FadeIn delay={0.2}>
-              <div className="max-w-2xl mx-auto mt-12 text-center">
-                <p className="text-slate-600 text-sm">
-                  Após selecionar o ambiente, você escolherá o estilo desejado.
-                </p>
+              <div className="max-w-md mx-auto mt-12 text-center">
+                <button
+                  onClick={handleAmbientesContinuar}
+                  disabled={ambientesSelecionados.length === 0}
+                  className={`w-full py-4 px-8 rounded-lg text-lg font-semibold transition-all ${
+                    ambientesSelecionados.length > 0
+                      ? 'bg-yellow-500 text-black hover:bg-yellow-400'
+                      : 'bg-slate-300 text-slate-500 cursor-not-allowed'
+                  }`}
+                >
+                  Continuar
+                </button>
+                {ambientesSelecionados.length > 0 && (
+                  <p className="text-slate-600 text-sm mt-3">
+                    {ambientesSelecionados.length} {ambientesSelecionados.length === 1 ? 'ambiente selecionado' : 'ambientes selecionados'}
+                  </p>
+                )}
               </div>
             </FadeIn>
           </>
         )}
 
         {/* ETAPA 2: Seleção de Estilo */}
-        {etapa === 2 && ambienteSelecionado && (
+        {etapa === 2 && ambientesSelecionados.length > 0 && (
           <>
             <FadeIn>
               <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
@@ -367,14 +453,14 @@ export default function QuestionarioPage() {
                   >
                     <path d="m15 18-6-6 6-6" />
                   </svg>
-                  Voltar e escolher outro ambiente
+                  Voltar e escolher outros ambientes
                 </button>
 
                 <h1 className="text-3xl md:text-5xl font-bold text-slate-800 mb-4">
-                  Qual estilo você prefere?
+                  Quais estilos você prefere?
                 </h1>
                 <p className="text-lg text-slate-600">
-                  Ambiente selecionado: <span className="font-semibold text-yellow-600">{ambienteSelecionado.titulo}</span>
+                  Ambientes selecionados: <span className="font-semibold text-yellow-600">{ambientesSelecionados.map(a => a.titulo).join(', ')}</span>
                 </p>
               </div>
             </FadeIn>
@@ -382,63 +468,83 @@ export default function QuestionarioPage() {
             {/* Grid de cards de estilos */}
             <FadeIn delay={0.1}>
               <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                {estilos.map((estilo, index) => (
-                  <button
-                    key={estilo.id}
-                    onClick={() => handleEstiloClick(estilo)}
-                    className="relative h-72 md:h-96 rounded-lg overflow-hidden cursor-pointer group focus:outline-none focus:ring-4 focus:ring-yellow-500 transition-all"
-                  >
-                    {/* Imagem de fundo */}
-                    <Image
-                      src={getEstiloImagem(ambienteSelecionado.id, index, ambienteSelecionado.extensao)}
-                      alt={estilo.titulo}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
+                {estilos.map((estilo, index) => {
+                  const isSelected = estilosSelecionados.some(e => e.id === estilo.id)
+                  return (
+                    <button
+                      key={estilo.id}
+                      onClick={() => handleEstiloToggle(estilo)}
+                      className={`relative h-72 md:h-96 rounded-lg overflow-hidden cursor-pointer group focus:outline-none focus:ring-4 focus:ring-yellow-500 transition-all ${
+                        isSelected ? 'ring-4 ring-yellow-500' : ''
+                      }`}
+                    >
+                      {/* Imagem de fundo */}
+                      <Image
+                        src={getEstiloImagem(ambientesSelecionados[0].id, index, ambientesSelecionados[0].extensao)}
+                        alt={estilo.titulo}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
 
-                    {/* Overlay gradiente */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                      {/* Overlay gradiente */}
+                      <div className={`absolute inset-0 bg-gradient-to-t ${isSelected ? 'from-yellow-900/80 via-black/30' : 'from-black/80 via-black/30'} to-transparent`} />
 
-                    {/* Conteúdo do texto */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                        {estilo.titulo}
-                      </h3>
-                      <p className="text-sm md:text-base opacity-90">
-                        {estilo.descricao}
-                      </p>
-                    </div>
-
-                    {/* Indicador de hover */}
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="bg-yellow-500 text-black rounded-full p-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="m9 18 6-6-6-6" />
-                        </svg>
+                      {/* Conteúdo do texto */}
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                          {estilo.titulo}
+                        </h3>
+                        <p className="text-sm md:text-base opacity-90">
+                          {estilo.descricao}
+                        </p>
                       </div>
-                    </div>
-                  </button>
-                ))}
+
+                      {/* Indicador de seleção */}
+                      {isSelected && (
+                        <div className="absolute top-4 right-4">
+                          <div className="bg-yellow-500 text-black rounded-full p-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                          </div>
+                        </div>
+                      )}
+                    </button>
+                  )
+                })}
               </div>
             </FadeIn>
 
-            {/* Informação adicional */}
+            {/* Botão Continuar */}
             <FadeIn delay={0.2}>
-              <div className="max-w-2xl mx-auto mt-12 text-center">
-                <p className="text-slate-600 text-sm">
-                  Selecione o estilo preferido para continuar.
-                </p>
+              <div className="max-w-md mx-auto mt-12 text-center">
+                <button
+                  onClick={handleEstilosContinuar}
+                  disabled={estilosSelecionados.length === 0}
+                  className={`w-full py-4 px-8 rounded-lg text-lg font-semibold transition-all ${
+                    estilosSelecionados.length > 0
+                      ? 'bg-yellow-500 text-black hover:bg-yellow-400'
+                      : 'bg-slate-300 text-slate-500 cursor-not-allowed'
+                  }`}
+                >
+                  Continuar
+                </button>
+                {estilosSelecionados.length > 0 && (
+                  <p className="text-slate-600 text-sm mt-3">
+                    {estilosSelecionados.length} {estilosSelecionados.length === 1 ? 'estilo selecionado' : 'estilos selecionados'}
+                  </p>
+                )}
               </div>
             </FadeIn>
           </>
@@ -583,7 +689,7 @@ export default function QuestionarioPage() {
                   Deseja iluminação LED?
                 </h1>
                 <p className="text-lg text-slate-600">
-                  A iluminação LED valoriza seu projeto
+                  Selecione uma ou mais opções
                 </p>
               </div>
             </FadeIn>
@@ -591,48 +697,89 @@ export default function QuestionarioPage() {
             {/* Cards de opções LED */}
             <FadeIn delay={0.1}>
               <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-                {opcoesLED.map((opcao) => (
-                  <button
-                    key={opcao.id}
-                    onClick={() => handleLEDClick(opcao)}
-                    className="p-6 rounded-lg border-2 border-slate-200 bg-white hover:border-yellow-500 hover:bg-yellow-50 transition-all group"
-                  >
-                    {/* Ícone de LED */}
-                    <div className="w-16 h-16 mx-auto mb-4 bg-slate-100 rounded-full flex items-center justify-center group-hover:bg-yellow-500 transition-colors">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-slate-600 group-hover:text-black transition-colors"
-                      >
-                        <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
-                        <path d="M9 18h6" />
-                        <path d="M10 22h4" />
-                      </svg>
-                    </div>
-                    <h3 className="text-lg font-bold text-slate-800 mb-2">
-                      {opcao.titulo}
-                    </h3>
-                    <p className="text-sm text-slate-600">
-                      {opcao.descricao}
-                    </p>
-                  </button>
-                ))}
+                {opcoesLED.map((opcao) => {
+                  const isSelected = ledsSelecionados.some(l => l.id === opcao.id)
+                  return (
+                    <button
+                      key={opcao.id}
+                      onClick={() => handleLEDToggle(opcao)}
+                      className={`relative p-6 rounded-lg border-2 transition-all group ${
+                        isSelected
+                          ? 'border-yellow-500 bg-yellow-50'
+                          : 'border-slate-200 bg-white hover:border-yellow-500 hover:bg-yellow-50'
+                      }`}
+                    >
+                      {/* Ícone de LED */}
+                      <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center transition-colors ${
+                        isSelected ? 'bg-yellow-500' : 'bg-slate-100 group-hover:bg-yellow-500'
+                      }`}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="32"
+                          height="32"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className={`transition-colors ${isSelected ? 'text-black' : 'text-slate-600 group-hover:text-black'}`}
+                        >
+                          <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+                          <path d="M9 18h6" />
+                          <path d="M10 22h4" />
+                        </svg>
+                      </div>
+                      <h3 className="text-lg font-bold text-slate-800 mb-2">
+                        {opcao.titulo}
+                      </h3>
+                      <p className="text-sm text-slate-600">
+                        {opcao.descricao}
+                      </p>
+
+                      {/* Indicador de seleção */}
+                      {isSelected && (
+                        <div className="absolute top-2 right-2 bg-yellow-500 text-black rounded-full p-1">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                      )}
+                    </button>
+                  )
+                })}
               </div>
             </FadeIn>
 
-            {/* Informação adicional */}
+            {/* Botão Continuar */}
             <FadeIn delay={0.2}>
-              <div className="max-w-2xl mx-auto mt-12 text-center">
-                <p className="text-slate-600 text-sm">
-                  Selecione uma opção para continuar.
-                </p>
+              <div className="max-w-md mx-auto mt-12 text-center">
+                <button
+                  onClick={handleLEDContinuar}
+                  disabled={ledsSelecionados.length === 0}
+                  className={`w-full py-4 px-8 rounded-lg text-lg font-semibold transition-all ${
+                    ledsSelecionados.length > 0
+                      ? 'bg-yellow-500 text-black hover:bg-yellow-400'
+                      : 'bg-slate-300 text-slate-500 cursor-not-allowed'
+                  }`}
+                >
+                  Continuar
+                </button>
+                {ledsSelecionados.length > 0 && (
+                  <p className="text-slate-600 text-sm mt-3">
+                    {ledsSelecionados.length} {ledsSelecionados.length === 1 ? 'opção selecionada' : 'opções selecionadas'}
+                  </p>
+                )}
               </div>
             </FadeIn>
           </>
@@ -680,21 +827,25 @@ export default function QuestionarioPage() {
                   <button
                     key={faixa.id}
                     onClick={() => handleOrcamentoClick(faixa)}
-                    className="w-full p-5 rounded-lg border-2 border-slate-200 bg-white hover:border-green-500 hover:bg-green-50 transition-all group flex items-center justify-between"
+                    className="w-full p-5 rounded-lg border-2 border-slate-200 bg-white hover:border-yellow-500 hover:bg-yellow-50 transition-all group flex items-center justify-between"
                   >
-                    <span className="text-lg font-semibold text-slate-800 group-hover:text-green-700">
+                    <span className="text-lg font-semibold text-slate-800 group-hover:text-yellow-700">
                       {faixa.titulo}
                     </span>
-                    {/* Ícone WhatsApp */}
-                    <div className="bg-green-500 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {/* Ícone de seta */}
+                    <div className="bg-yellow-500 text-black rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
                         height="20"
                         viewBox="0 0 24 24"
-                        fill="currentColor"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        <path d="m9 18 6-6-6-6" />
                       </svg>
                     </div>
                   </button>
@@ -706,9 +857,175 @@ export default function QuestionarioPage() {
             <FadeIn delay={0.2}>
               <div className="max-w-2xl mx-auto mt-12 text-center">
                 <p className="text-slate-600 text-sm">
-                  Ao selecionar seu orçamento, você será direcionado para o WhatsApp
-                  para conversarmos sobre seu projeto personalizado.
+                  Ao selecionar seu orçamento, você irá para a última etapa
+                  para informar seus dados de contato.
                 </p>
+              </div>
+            </FadeIn>
+          </>
+        )}
+
+        {/* ETAPA 6: Contato */}
+        {etapa === 6 && !isSubmitted && (
+          <>
+            <FadeIn>
+              <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
+                {/* Botão Voltar */}
+                <button
+                  onClick={handleVoltar}
+                  className="mb-6 text-slate-600 hover:text-slate-800 text-sm flex items-center gap-2 mx-auto"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                  Voltar e escolher outra faixa de orçamento
+                </button>
+
+                <h1 className="text-3xl md:text-5xl font-bold text-slate-800 mb-4">
+                  Quase lá! Informe seus dados
+                </h1>
+                <p className="text-lg text-slate-600">
+                  Preencha seus dados para receber seu orçamento personalizado
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* Resumo das seleções */}
+            <FadeIn delay={0.1}>
+              <div className="max-w-md mx-auto mb-8 p-4 bg-slate-100 rounded-lg">
+                <h3 className="text-sm font-semibold text-slate-700 mb-3">Resumo do seu projeto:</h3>
+                <div className="space-y-2 text-sm text-slate-600">
+                  <p><span className="font-medium">Ambientes:</span> {ambientesSelecionados.map(a => a.titulo).join(', ')}</p>
+                  <p><span className="font-medium">Estilos:</span> {estilosSelecionados.map(e => e.titulo).join(', ')}</p>
+                  <p><span className="font-medium">Cores:</span> {coresSelecionadas.join(', ')}</p>
+                  <p><span className="font-medium">LED:</span> {ledsSelecionados.map(l => l.titulo).join(', ')}</p>
+                  <p><span className="font-medium">Orçamento:</span> {orcamentoSelecionado}</p>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Formulário de contato */}
+            <FadeIn delay={0.2}>
+              <div className="max-w-md mx-auto space-y-6">
+                <div>
+                  <label htmlFor="nome" className="block text-sm font-medium text-slate-700 mb-2">
+                    Nome completo *
+                  </label>
+                  <input
+                    type="text"
+                    id="nome"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                    placeholder="Digite seu nome"
+                    className="w-full p-4 border-2 border-slate-200 rounded-lg focus:border-yellow-500 focus:outline-none transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="whatsapp" className="block text-sm font-medium text-slate-700 mb-2">
+                    WhatsApp *
+                  </label>
+                  <input
+                    type="tel"
+                    id="whatsapp"
+                    value={whatsapp}
+                    onChange={(e) => setWhatsapp(e.target.value)}
+                    placeholder="(00) 00000-0000"
+                    className="w-full p-4 border-2 border-slate-200 rounded-lg focus:border-yellow-500 focus:outline-none transition-colors"
+                  />
+                </div>
+
+                {submitError && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-600 text-sm">{submitError}</p>
+                  </div>
+                )}
+
+                <button
+                  onClick={handleContatoSubmit}
+                  disabled={isSubmitting}
+                  className={`w-full py-4 px-8 rounded-lg text-lg font-semibold transition-all ${
+                    isSubmitting
+                      ? 'bg-slate-300 text-slate-500 cursor-not-allowed'
+                      : 'bg-yellow-500 text-black hover:bg-yellow-400'
+                  }`}
+                >
+                  {isSubmitting ? 'Enviando...' : 'Enviar Solicitação'}
+                </button>
+              </div>
+            </FadeIn>
+
+            {/* Informação adicional */}
+            <FadeIn delay={0.3}>
+              <div className="max-w-2xl mx-auto mt-12 text-center">
+                <p className="text-slate-600 text-sm">
+                  Entraremos em contato pelo WhatsApp para discutir seu projeto personalizado.
+                </p>
+              </div>
+            </FadeIn>
+          </>
+        )}
+
+        {/* Tela de sucesso */}
+        {isSubmitted && (
+          <>
+            <FadeIn>
+              <div className="max-w-2xl mx-auto text-center">
+                {/* Ícone de sucesso */}
+                <div className="w-24 h-24 mx-auto mb-8 bg-green-100 rounded-full flex items-center justify-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-green-600"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+
+                <h1 className="text-3xl md:text-5xl font-bold text-slate-800 mb-4">
+                  Solicitação Enviada!
+                </h1>
+                <p className="text-lg text-slate-600 mb-8">
+                  Obrigado, <span className="font-semibold">{nome}</span>! Recebemos sua solicitação
+                  e entraremos em contato pelo WhatsApp em breve.
+                </p>
+
+                {/* Resumo do projeto */}
+                <div className="bg-slate-100 rounded-lg p-6 mb-8 text-left">
+                  <h3 className="text-lg font-semibold text-slate-800 mb-4">Resumo do seu projeto:</h3>
+                  <div className="space-y-3 text-slate-600">
+                    <p><span className="font-medium">Ambientes:</span> {ambientesSelecionados.map(a => a.titulo).join(', ')}</p>
+                    <p><span className="font-medium">Estilos:</span> {estilosSelecionados.map(e => e.titulo).join(', ')}</p>
+                    <p><span className="font-medium">Cores:</span> {coresSelecionadas.join(', ')}</p>
+                    <p><span className="font-medium">LED:</span> {ledsSelecionados.map(l => l.titulo).join(', ')}</p>
+                    <p><span className="font-medium">Orçamento:</span> {orcamentoSelecionado}</p>
+                  </div>
+                </div>
+
+                {/* Botão voltar para home */}
+                <Link
+                  href="/"
+                  className="inline-block py-4 px-8 bg-yellow-500 text-black rounded-lg text-lg font-semibold hover:bg-yellow-400 transition-colors"
+                >
+                  Voltar para a Home
+                </Link>
               </div>
             </FadeIn>
           </>
